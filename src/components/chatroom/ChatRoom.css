@@ -1,4 +1,39 @@
-.message_box {
+.chatroom {
+    margin: 10px;
+}
+
+.chat_box {
     border: 1px solid #666;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.message_box {
+    margin: 20px;
+}
+
+.message_text {
+    background-color: #f8f8f8;
+    padding: 10px;
+}
+
+.bottom_info {
+    font-size: 10px;
+    text-align: right;
+}
+
+.edit_link {
+    text-decoration: underline;
+}
+
+.chatMessageForm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message_input {
+    width: 100%;
+}
+
+.message_btn {
+    padding-left: 10px;
 }
