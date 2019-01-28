@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Events from "./events/Events"
 import TaskList from "./tasks/TaskList"
 import TaskManager from "../modules/TaskManager"
+import TaskForm from "./tasks/TaskForm"
 
 export default class ApplicationViews extends Component {
 
@@ -31,6 +32,14 @@ export default class ApplicationViews extends Component {
       })
     )
   }
+
+  // ADDING A TASK:
+   addTask = (task) => TaskManager.post(task)
+   .then(() => TaskManager.getAllTasks())
+   .then(tasks => this.setState({
+      tasks: tasks
+     })
+   )
 
   render() {
     return (
@@ -74,6 +83,12 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's tasks
           }}
         />
+          {/* Route for adding a new task */}
+        <Route path="/tasks/new" render={(props) => {
+                    return <TaskForm {...props}
+                       addTask={this.addTask}
+                       tasks={this.state.tasks} />
+                   }} />
 
       </React.Fragment>
     );
