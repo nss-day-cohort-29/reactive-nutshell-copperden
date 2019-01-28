@@ -10,6 +10,17 @@ export default {
         return fetch(`${remoteURL}/messages?_expand=user`).then(data => data.json())
     },
 
+    post(newMessage) {
+        return fetch(`${remoteURL}/messages`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newMessage)
+        })
+        .then(data => data.json())
+      },
+
     put(messageId, editedMessage) {
         return fetch(`${remoteURL}/messages/${messageId}`, {
             method: "PUT",

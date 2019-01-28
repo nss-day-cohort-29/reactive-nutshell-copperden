@@ -3,6 +3,57 @@ import { Link } from 'react-router-dom'
 import "./ChatRoom.css"
 
 export default class ChatRoom extends Component {
+
+    // Set initial state
+    state = {
+        "message": "",
+        "timeDisplay": "",
+        "timestamp": "",
+        "userId": ""
+    }
+
+    // Update state whenever an input field is edited
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        console.log(evt.target.id, evt.target.value);
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+
+    addNewMessage = evt => {
+        evt.preventDefault();
+
+        let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        let d = new Date();
+        let month = d.getMonth();
+        let date = d.getDate();
+        let year = d.getFullYear();
+        let hours = d.getHours();
+        let minutes = ("0" + d.getMinutes()).slice(-2);
+        let suffix = "AM";
+	    if (hours > 12) {
+		    suffix = "PM";
+		    hours = hours - 12;
+        }
+        else if (hours === 12) {
+		    suffix = "PM";
+        }
+        let dateDisplay = months[month] + "/" + date + "/" + year + " at " + hours + ":" + minutes + " " + suffix;
+
+        let timestamp = d.getTime();
+
+        const newMessage = {
+            message: this.state.message,
+            timeDisplay: dateDisplay,
+            timestamp: timestamp,
+            userId: 1
+        }
+
+        // Create the message and then refresh chatroom
+        this.props.addMessage(newMessage)
+        .then(() => this.props.history.push("/messages"))
+    }
+
     render() {
         return (
             <section className="chatroom">
@@ -16,7 +67,8 @@ export default class ChatRoom extends Component {
                                 <br />
                                 <div className="message_text">{message.message}</div>
                                 <div className="bottom_info">
-                                    <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link> | {message.time}</div>
+                                    {message.timeDisplay} | <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link>
+                                </div>
                             </div>
                         </div>
                     )
@@ -28,10 +80,10 @@ export default class ChatRoom extends Component {
                             placeholder="Enter your message here"
                             className="form-control"
                             onChange={this.handleFieldChange}
-                            id="firstName" />
+                            id="message" />
                     </div>
                     <div className="message_btn">
-                        <button type="submit" onClick={console.log("Click clack!")} className="btn btn-primary">Submit</button>
+                        <button type="submit" onClick={this.addNewMessage} className="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </section>
