@@ -2,6 +2,9 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import Events from "./events/Events"
 
+import ChatRoom from "./chatroom/ChatRoom"
+import ChatManager from "../modules/ChatManager"
+
 export default class ApplicationViews extends Component {
 
   state = {
@@ -13,7 +16,12 @@ export default class ApplicationViews extends Component {
   };
 
   componentDidMount() {
-    
+
+    ChatManager.getAll()
+        .then(allMessages => {
+            this.setState({ messages: allMessages })
+        })
+
   }
 
   render() {
@@ -36,8 +44,8 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+            return <ChatRoom {...props}
+                    messages={this.state.messages} />
           }}
         />
 
@@ -54,7 +62,7 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's tasks
           }}
         />
-        
+
       </React.Fragment>
     );
   }
