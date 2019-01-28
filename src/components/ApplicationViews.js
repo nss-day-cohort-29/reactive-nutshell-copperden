@@ -20,6 +20,15 @@ export default class ApplicationViews extends Component {
         events: allEvents
       });
     });
+
+    // EventManager.deleteEvent = (id) => {
+    //   return EventManager.removeAndList(id)
+    //   .then(animals => this.setState({
+    //       animals: animals
+    //     })
+    //   )
+    // }
+
     
   }
 
@@ -57,7 +66,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return <Events events={this.state.events}/>
+            return <Events {...props} events={this.state.events} />
             // Remove null and return the component which will show the user's tasks
           }}
         />

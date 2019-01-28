@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
 
 export class Events extends Component {
+
+   
+    
   render() {
+    // Creating an array that sorts each event by date
+    const sortedEvents = this.props.events.sort(function(eventA, eventB){
+        return new Date(eventA.date) - new Date(eventB.date)})
+        
     return (
       <>
-      {this.props.events.sort(function(eventA, eventB){
-        return new Date(eventA.date) - new Date(eventB.date)})
-        }
+      <button>Add Event</button>
+      {sortedEvents.map(event => 
+      <div key={event.id} className="event-card">
+          <h3 className="even-header">{event.name}</h3>
+          <p className="event-date">{event.date}</p>
+          <p className="event-location">{event.location}</p>
+          <button>Delete</button>
+          <button>Edit</button>
+      </div>
+      )}
        
       </>
     )
@@ -15,9 +29,5 @@ export class Events extends Component {
 
 export default Events
 
-(function(a,b){
-    // Turn your strings into dates, and then subtract them
-    // to get a value that is either negative, positive, or zero.
-    return new Date(b.date) - new Date(a.date);
-  });
+
 
