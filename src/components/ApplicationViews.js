@@ -5,16 +5,16 @@ import Events from "./events/Events"
 export default class ApplicationViews extends Component {
 
   state = {
-    news: [],
-    friends: [],
+    articles: [],
+    connections: [],
     messages: [],
     tasks: [],
     events: []
   };
 
   componentDidMount() {
-
-  };
+    
+  }
 
   render() {
     return (
