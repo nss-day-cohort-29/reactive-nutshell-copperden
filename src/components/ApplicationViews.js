@@ -5,6 +5,9 @@ import TaskList from "./tasks/TaskList"
 import TaskManager from "../modules/TaskManager"
 import TaskForm from "./tasks/TaskForm"
 
+import ChatRoom from "./chatroom/ChatRoom"
+import ChatManager from "../modules/ChatManager"
+
 export default class ApplicationViews extends Component {
 
   state = {
@@ -16,15 +19,20 @@ export default class ApplicationViews extends Component {
   };
 
   componentDidMount() {
+
+    ChatManager.getAll()
+        .then(allMessages => {
+            this.setState({ messages: allMessages })
+        })
+
     // GETTING all tasks for user:
     TaskManager.getAllTasks().then(allTasks => {
       this.setState({
           tasks: allTasks
       })
-  })
+    })
   }
 
-  // DELETE A TASK:
   deleteTask = (id) => {
     return TaskManager.removeAndList(id)
     .then(tasks => this.setState({
@@ -40,6 +48,13 @@ export default class ApplicationViews extends Component {
       tasks: tasks
      })
    )
+
+   addMessage = (message) => ChatManager.post(message)
+    .then(() => ChatManager.getAll())
+    .then(allMessages => this.setState({
+        messages: allMessages
+        })
+    )
 
   render() {
     return (
@@ -61,8 +76,9 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+            return <ChatRoom {...props}
+                    messages={this.state.messages}
+                    addMessage={this.addMessage} />
           }}
         />
 
