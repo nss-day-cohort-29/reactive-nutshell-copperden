@@ -1,16 +1,13 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import Events from "./events/Events"
-<<<<<<< HEAD
 import EventManager from "../modules/EventManager"
-=======
 import TaskList from "./tasks/TaskList"
 import TaskManager from "../modules/TaskManager"
 import TaskForm from "./tasks/TaskForm"
 
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
->>>>>>> master
 
 export default class ApplicationViews extends Component {
 
@@ -24,7 +21,6 @@ export default class ApplicationViews extends Component {
 
   componentDidMount() {
 
-<<<<<<< HEAD
     EventManager.getAll().then(allEvents => {
       this.setState({
         events: allEvents
@@ -40,7 +36,6 @@ export default class ApplicationViews extends Component {
     // }
 
     
-=======
     ChatManager.getAll()
         .then(allMessages => {
             this.setState({ messages: allMessages })
@@ -60,7 +55,6 @@ export default class ApplicationViews extends Component {
         tasks: tasks
       })
     )
->>>>>>> master
   }
 
   // ADDING A TASK:
