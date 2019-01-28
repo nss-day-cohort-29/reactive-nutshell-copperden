@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Events from "./events/Events"
 import TaskList from "./tasks/TaskList"
 import TaskManager from "../modules/TaskManager"
+import TaskForm from "./tasks/TaskForm"
 
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
@@ -40,7 +41,15 @@ export default class ApplicationViews extends Component {
     )
   }
 
-  addMessage = (message) => ChatManager.post(message)
+  // ADDING A TASK:
+   addTask = (task) => TaskManager.post(task)
+   .then(() => TaskManager.getAllTasks())
+   .then(tasks => this.setState({
+      tasks: tasks
+     })
+   )
+
+   addMessage = (message) => ChatManager.post(message)
     .then(() => ChatManager.getAll())
     .then(allMessages => this.setState({
         messages: allMessages
@@ -90,6 +99,12 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's tasks
           }}
         />
+          {/* Route for adding a new task */}
+        <Route path="/tasks/new" render={(props) => {
+                    return <TaskForm {...props}
+                       addTask={this.addTask}
+                       tasks={this.state.tasks} />
+                   }} />
 
       </React.Fragment>
     );
