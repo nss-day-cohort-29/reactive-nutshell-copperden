@@ -1,6 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import Events from "./events/Events"
+import TaskList from "./tasks/TaskList"
+import TaskManager from "../modules/TaskManager"
 
 export default class ApplicationViews extends Component {
 
@@ -13,7 +15,21 @@ export default class ApplicationViews extends Component {
   };
 
   componentDidMount() {
-    
+    // GETTING all tasks for user:
+    TaskManager.getAllTasks().then(allTasks => {
+      this.setState({
+          tasks: allTasks
+      })
+  })
+  }
+
+  // DELETE A TASK:
+  deleteTask = (id) => {
+    return TaskManager.removeAndList(id)
+    .then(tasks => this.setState({
+        tasks: tasks
+      })
+    )
   }
 
   render() {
@@ -43,7 +59,11 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/tasks" render={props => {
-            return null
+            return  <Route exact path="/tasks" render={(props) => {
+              return <TaskList {...props}
+              deleteTask={this.deleteTask}
+              tasks={this.state.tasks} />
+      }} />
             // Remove null and return the component which will show the user's tasks
           }}
         />
@@ -54,7 +74,7 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's tasks
           }}
         />
-        
+
       </React.Fragment>
     );
   }
