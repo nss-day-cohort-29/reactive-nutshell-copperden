@@ -1,6 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import Events from "./events/Events"
+import EventManager from "../modules/EventManager"
 
 export default class ApplicationViews extends Component {
 
@@ -13,6 +14,12 @@ export default class ApplicationViews extends Component {
   };
 
   componentDidMount() {
+
+    EventManager.getAll().then(allEvents => {
+      this.setState({
+        events: allEvents
+      });
+    });
     
   }
 
@@ -50,7 +57,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return <Events />
+            return <Events events={this.state.events}/>
             // Remove null and return the component which will show the user's tasks
           }}
         />
