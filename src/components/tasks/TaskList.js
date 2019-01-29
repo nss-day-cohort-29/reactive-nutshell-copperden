@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import dog from "./DogIcon.png"
-// import "./Animal.css"
+import "./Task.css"
 import { Link } from "react-router-dom";
 // import AnimalCard from "./AnimalCard"
 
@@ -12,7 +12,7 @@ export default class TaskList extends Component {
             {/* ADD TASK BUTTON */}
             <div className="taskButton">
             <button type="button"
-                    className="btn btn-primary"
+                    className="btn btn-primary addTask"
                     onClick={() => {
                         this.props.history.push("/tasks/new")}
                     }>
@@ -20,7 +20,8 @@ export default class TaskList extends Component {
             </button>
             </div>
 
-                <h3>Your Tasks:</h3>
+                <h2>Your Tasks:</h2>
+                <hr></hr>
                 {
                     // GETTING ALL TASKS CURRENTLY IN JSON
                 this.props.tasks.map(task =>
@@ -35,11 +36,13 @@ export default class TaskList extends Component {
                             <label onClick={() => this.props.deleteTask(task.id)}
                     className="card-link">
                                {/* Complete <br></br> */}
-                               <a href="#"> <input type="checkbox" /></a>
+                               <a href="#"> <input type="checkbox"/></a>
                             </label>
-                   {/* ADD LINK CHECK GITHUB */}
+                   {/* ADD LINK FOR EDITCHECK GITHUB */}
+                   <Link className="nav-link" to={`/tasks/${task.id}/edit`}>Edit</Link>
 
                 </div>
+                <hr></hr>
             </div>
                 )}
             </React.Fragment>
