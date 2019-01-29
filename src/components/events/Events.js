@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
 export class Events extends Component {
 
@@ -25,7 +26,9 @@ export class Events extends Component {
            let deleteConfirmation = window.confirm("Are you sure?")
             if(deleteConfirmation === true) {
             this.props.deleteEvent(event.id)}}}>Delete</button>
-          <button>Edit</button>
+          <button>
+          <Link className="nav-link" to={`/events/${event.id}/edit`}>Edit</Link>
+          </button>
       </div>
       )}
        

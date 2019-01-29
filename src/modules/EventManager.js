@@ -24,4 +24,15 @@ export default {
     .then(() => fetch(`http://localhost:5002/events`))
     .then(e => e.json())
 }
-};
+,
+put(eventId, existingEvent) {
+  return fetch(`${remoteURL}/events/${eventId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(existingEvent)
+  }).then(data => data.json());
+}
+}
+;

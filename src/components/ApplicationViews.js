@@ -9,6 +9,7 @@ import TaskForm from "./tasks/TaskForm"
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
 import EventsForm from "./events/EventsForm"
+import EventEditForm from "./events/EventEditForm"
 
 export default class ApplicationViews extends Component {
 
@@ -81,6 +82,16 @@ export default class ApplicationViews extends Component {
         })
     )
 
+    updateEvent = (eventId, editedEventObj) => {
+      return EventManager.put(eventId, editedEventObj)
+      .then(() => EventManager.getAll())
+      .then(events => {
+        this.setState({
+          events
+        })
+      });
+    }
+
   render() {
     return (
       <React.Fragment>
@@ -136,6 +147,12 @@ export default class ApplicationViews extends Component {
                        addEvent={this.addEvent}
                        events={this.state.events} />
                    }} />
+
+        <Route
+          path="/events/:eventsId(\d+)/edit" render={props => {
+            return <EventEditForm {...props} updateEvent={this.updateEvent}/>
+          }}
+        />
 
       </React.Fragment>
     );
