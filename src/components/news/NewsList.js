@@ -21,9 +21,9 @@ export default class NewsList extends Component {
               <div key={article.id} className="card">
                 <div className="card-body">
                   <h5 className="card-title">
-                    {article.title}
-                    {article.url}
-                    {article.synopsis}
+                    {article.title}<br></br>
+                    {article.url}<br></br>
+                    {article.synopsis}<br></br>
                     <a href="#"
                       onClick={() => this.props.deleteArticle(article.id)}
                       className="card-link">Delete</a>

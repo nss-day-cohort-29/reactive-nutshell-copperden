@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import ".News.css"
+import "./News.css"
 
 export default class NewsForm extends Component {
   // Sets initial state
@@ -18,6 +18,7 @@ export default class NewsForm extends Component {
   }
 
   makeNewsArticle = e => {
+    e.preventDefault()
     const news = {
       title: this.state.title,
       url: this.state.url,
@@ -56,6 +57,7 @@ export default class NewsForm extends Component {
             id="synopsis"
             placeholder="Article summary" />
           </div>
+          <button type="submit" onClick={this.makeNewsArticle} className="btn btn-primary">Submit</button>
         </form>
       </React.Fragment>
     )

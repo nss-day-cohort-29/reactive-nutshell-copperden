@@ -8,6 +8,7 @@ import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
 import TaskEditForm from './tasks/TaskEditForm'
 import NewsManager from "../modules/NewsManager";
+import NewsList from "./news/NewsList";
 
 export default class ApplicationViews extends Component {
 
@@ -72,13 +73,29 @@ export default class ApplicationViews extends Component {
         })
     )
 
+    deleteArticle = (id) => {
+      return NewsManager.removeAndList(id)
+      .then(articles => this.setState({
+          articles: articles
+        })
+      )
+    }
+
+    // ADDING A TASK:
+     addTask = (task) => TaskManager.post(task)
+     .then(() => TaskManager.getAllTasks())
+     .then(tasks => this.setState({
+        tasks: tasks
+       })
+     )
+
   render() {
     return (
       <React.Fragment>
 
         <Route
           exact path="/" render={props => {
-            return null
+            return <NewsList articles={this.state.articles} />
             // Remove null and return the component which will show news articles
           }}
         />

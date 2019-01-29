@@ -14,5 +14,14 @@ export default {
       body: JSON.stringify(newArticle)
     })
       .then(data => data.json())
-  }
+  },
+   //   delete articles
+   removeAndList(id){
+    return fetch(`http://localhost:5002/articles/${id}`, {
+        method: "DELETE"
+    })
+    .then(e => e.json())
+    .then(() => fetch(`http://localhost:5002/articles`))
+    .then(e => e.json())
+}
 }
