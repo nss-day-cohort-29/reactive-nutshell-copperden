@@ -51,11 +51,10 @@ export default class NewsForm extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="synopsis">Synopsis</label>
-            <input type="text" required
-              className="form-control"
-              onChange={this.handleFieldChange}
-              id="synopsis"
-              placeholder="Article summary" />
+            <textarea className="form-control" rows="3"
+            onChange={this.handleFieldChange}
+            id="synopsis"
+            placeholder="Article summary" />
           </div>
 
         </form>
