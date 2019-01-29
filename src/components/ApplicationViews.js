@@ -101,14 +101,15 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/tasks" render={props => {
-            return  <Route exact path="/tasks" render={(props) => {
-              if (this.isAuthenticated()) {
-              return <TaskList {...props}
-              deleteTask={this.deleteTask}
-              tasks={this.state.tasks} />
-              } else {
-                return <Redirect to="/login" />
-              }
+              return  <Route exact path="/tasks" render={(props) => {
+                // LOGIN:
+                if (this.isAuthenticated()) {
+                      return <TaskList {...props}
+                      deleteTask={this.deleteTask}
+                      tasks={this.state.tasks} />
+                } else {
+                      return <Redirect to="/login" />
+                }
       }} />
             // Remove null and return the component which will show the user's tasks
           }}
