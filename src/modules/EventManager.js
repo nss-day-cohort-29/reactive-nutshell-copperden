@@ -15,5 +15,24 @@ export default {
       },
       body: JSON.stringify(newEvent)
     }).then(data => data.json());
-  }
-};
+  },
+  removeAndList(id){
+    return fetch(`http://localhost:5002/events/${id}`, {
+        method: "DELETE"
+    })
+    .then(e => e.json())
+    .then(() => fetch(`http://localhost:5002/events`))
+    .then(e => e.json())
+}
+,
+put(eventId, existingEvent) {
+  return fetch(`${remoteURL}/events/${eventId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(existingEvent)
+  }).then(data => data.json());
+}
+}
+;

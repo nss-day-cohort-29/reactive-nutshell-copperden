@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import "./ChatRoom.css"
+// import ChatManager from '../../modules/ChatManager';
+import ChatCard from "./ChatCard"
 
 export default class ChatRoom extends Component {
 
@@ -20,8 +22,10 @@ export default class ChatRoom extends Component {
         this.setState(stateToChange)
     }
 
-    addNewMessage = evt => {
-        evt.preventDefault();
+    // Add new message to chat room
+    addNewMessage = event => {
+        event.preventDefault();     // Cancels the default action of the submit.
+        event.target.reset();       // Resets values after submit.
 
         let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
         let d = new Date();
@@ -51,30 +55,29 @@ export default class ChatRoom extends Component {
 
         // Create the message and then refresh chatroom
         this.props.addMessage(newMessage)
-        .then(() => this.props.history.push("/messages"))
+    }
+
+    // Set scrollbar to bottom
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+    scrollToBottom() {
+        const {chatBox} = this.refs;
+        chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
     }
 
     render() {
         return (
             <section className="chatroom">
                 <h1>Chat</h1>
-                <div className="chat_box">
+                <div className="chat_box" ref={`chatBox`}>
                 {
                     this.props.messages.map(message =>
-                        <div key={message.id}>
-                            <div className="message_box">
-                                <span className="username">{message.user.name} wrote:</span>
-                                <br />
-                                <div className="message_text">{message.message}</div>
-                                <div className="bottom_info">
-                                    {message.timeDisplay} | <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link>
-                                </div>
-                            </div>
-                        </div>
+                        <ChatCard key={message.id} message={message} {...this.props} />
                     )
                 }
                 </div>
-                <form className="chatMessageForm">
+                <form className="chatMessageForm" onSubmit={this.addNewMessage}>
                     <div className="message_input">
                         <input type="text" required
                             placeholder="Enter your message here"
@@ -83,7 +86,7 @@ export default class ChatRoom extends Component {
                             id="message" />
                     </div>
                     <div className="message_btn">
-                        <button type="submit" onClick={this.addNewMessage} className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </section>
