@@ -1,0 +1,120 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "userName",
+      "email": "userEmail@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "userName2",
+      "email": "userEmail2@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "userName3",
+      "email": "userEmail3@gmail.com"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "Event Name 1",
+      "date": "2019-01-22T12:30",
+      "location": "Franklin, TN",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "name": "Event Name 2",
+      "date": "2019-01-16T17:00",
+      "location": "Nashville, TN",
+      "userId": 2
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "User 1 Article (#1)",
+      "url": "http://google.com",
+      "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur purus eget est rutrum tincidunt. Vestibulum a velit accumsan quam scelerisque efficitur. Proin tincidunt magna id orci ultricies vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis laoreet lacus nibh, id tincidunt enim euismod in. Sed egestas sapien orci, in vestibulum ipsum tempor id. Aenean eleifend mi dui, in consequat lacus laoreet quis.",
+      "timestamp": "1457395221082",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "title": "User 1 Article (#2)",
+      "url": "http://google.com",
+      "synopsis": "Fusce turpis mi, sollicitudin quis maximus ac, facilisis vel lectus. Duis laoreet sollicitudin odio at viverra. Phasellus scelerisque, ante id lacinia cursus, elit nunc ullamcorper ipsum, vel faucibus sapien lectus nec nisl. In dui lorem, dignissim sit amet turpis pulvinar, congue malesuada ligula. Morbi dignissim, est vel lacinia mollis, magna ligula posuere arcu, rhoncus ultricies est dui vel risus.",
+      "timestamp": "1047395221082",
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "title": "User 3 Article (#1)",
+      "url": "http://google.com",
+      "synopsis": "Fusce turpis mi, sollicitudin quis maximus ac, facilisis vel lectus. Duis laoreet sollicitudin odio at viverra. Phasellus scelerisque, ante id lacinia cursus, elit nunc ullamcorper ipsum, vel faucibus sapien lectus nec nisl. In dui lorem, dignissim sit amet turpis pulvinar, congue malesuada ligula. Morbi dignissim, est vel lacinia mollis, magna ligula posuere arcu, rhoncus ultricies est dui vel risus.",
+      "timestamp": "1647495221082",
+      "userId": 2
+    }
+  ],
+  "tasks": [
+      {
+          "id": 1,
+          "taskName": "User1 Task Name 1",
+          "dueDate": "2019-02-22",
+          "completed": false,
+          "userId": 1
+      },
+      {
+          "id": 1,
+          "taskName": "User1 Task Name 2",
+          "dueDate": "2019-02-10",
+          "completed": false,
+          "userId": 1
+      },
+      {
+          "id": 1,
+          "taskName": "User2 Task Name 2",
+          "dueDate": "2019-02-15",
+          "completed": false,
+          "userId": 2
+      }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "message": "User1 Message Content",
+      "time": "Message Time",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "message": "User2 Message Content",
+      "time": "Message Time",
+      "userId": 2
+    }
+  ],
+  "connections": [
+    {
+      "id": 1,
+      "currentUserId": 1,
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "currentUserId": 2,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "currentUserId": 1,
+      "userId": 3
+    },
+    {
+      "id": 4,
+      "currentUserId": 3,
+      "userId": 1
+    }
+  ]
+}
