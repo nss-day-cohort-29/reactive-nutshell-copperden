@@ -15,6 +15,7 @@ import Login from './authentication/Login'
 export default class ApplicationViews extends Component {
 
   state = {
+    users: [],
     articles: [],
     connections: [],
     messages: [],
@@ -71,6 +72,16 @@ export default class ApplicationViews extends Component {
     })
   )
 
+  updateEvent = (eventId, editedEventObj) => {
+      return EventManager.put(eventId, editedEventObj)
+      .then(() => EventManager.getAll())
+      .then(events => {
+        this.setState({
+          events:events
+        })
+      });
+    }
+
   // ADDING A TASK:
    addTask = (task) => TaskManager.post(task)
    .then(() => TaskManager.getAllTasks())
@@ -90,6 +101,7 @@ export default class ApplicationViews extends Component {
     })
   }
 
+  // POST new message
    addMessage = (message) => ChatManager.post(message)
     .then(() => ChatManager.getAll())
     .then(allMessages => this.setState({
@@ -97,15 +109,16 @@ export default class ApplicationViews extends Component {
         })
     )
 
-    updateEvent = (eventId, editedEventObj) => {
-      return EventManager.put(eventId, editedEventObj)
-      .then(() => EventManager.getAll())
-      .then(events => {
-        this.setState({
-          events:events
-        })
-      });
-    }
+    // Edit existing message
+    updateMessage = (messageId, editedMessage) => {
+      return ChatManager.put(messageId, editedMessage)
+      .then(() => ChatManager.getAll())
+      .then(messages => {
+          this.setState({
+            messages: messages
+          })
+      })
+  }
 
   render() {
     return (
@@ -131,7 +144,9 @@ export default class ApplicationViews extends Component {
           path="/messages" render={props => {
             return <ChatRoom {...props}
                     messages={this.state.messages}
-                    addMessage={this.addMessage} />
+                    addMessage={this.addMessage}
+                    updateMessage={this.updateMessage}
+                    users={this.state.users} />
           }}
         />
 
@@ -147,7 +162,6 @@ export default class ApplicationViews extends Component {
                       return <Redirect to="/login" />
                 }
       }} />
-            // Remove null and return the component which will show the user's tasks
           }}
         />
       {/* Event Page */}
