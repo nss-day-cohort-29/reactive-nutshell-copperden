@@ -11,12 +11,16 @@ export class Events extends Component {
         
     return (
       <>
-      <button>Add Event</button>
+      <button onClick={() => {
+                        this.props.history.push("/events/new")}
+                    }>Add Event</button>
+      {/* Building out each event and putting it on the DOM */}
       {sortedEvents.map(event => 
       <div key={event.id} className="event-card">
           <h3 className="even-header">{event.name}</h3>
           <p className="event-date">{event.date}</p>
           <p className="event-location">{event.location}</p>
+      {/* Button confirms deletion of event. If the user confirms deletion, event is deleted */}
           <button onClick={() => {
            let deleteConfirmation = window.confirm("Are you sure?")
             if(deleteConfirmation === true) {

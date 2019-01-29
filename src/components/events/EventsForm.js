@@ -1,0 +1,105 @@
+import React, { Component } from "react";
+
+export default class EventsForm extends Component {
+  // Set initial state
+  state = {
+    eventName: "",
+    eventDate: "",
+    eventLocation: ""
+  };
+
+  // Update state whenever an input field is edited
+  handleFieldChange = evt => {
+    const eventToChange = {};
+    console.log(evt.target.id, evt.target.value);
+    eventToChange[evt.target.id] = evt.target.value;
+    this.setState(eventToChange);
+  };
+
+  /*
+        Local method for validation, creating animal object, and
+        invoking the function reference passed from parent component
+     */
+  constructNewEvent = evt => {
+    evt.preventDefault();
+    if (this.state.eventName === "") {
+      window.alert("Please enter a name for your event.");
+    } else {
+      const event = {
+        name: this.state.eventName,
+        date: this.state.eventDate,
+        location: this.state.eventLocation
+      };
+
+      // Create the animal and redirect user to animal list
+      this.props
+        .addEvent(event)
+        .then(() => this.props.history.push("/events"));
+    }
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <form className="eventForm">
+          <div className="form-group">
+            <label htmlFor="eventName">Event name</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              onChange={this.handleFieldChange}
+              id="eventName"
+              placeholder="Event name"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="date">Date</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              onChange={this.handleFieldChange}
+              id="eventDate"
+              placeholder="Date"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">Location</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              onChange={this.handleFieldChange}
+              id="eventLocation"
+              placeholder="Location"
+            />
+          </div>
+          {/* <div className="form-group">
+            <label htmlFor="location">Location</label>
+            <select
+              defaultValue=""
+              name="location"
+              id="location"
+              onChange={this.handleFieldChange}
+            >
+              <option value="">Select an employee</option>
+              {this.props.employees.map(e => (
+                <option key={e.id} id={e.id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
+          </div> */}
+          <button
+            type="submit"
+            onClick={this.constructNewEvent}
+            className="btn btn-primary"
+          >
+            Submit
+          </button>
+        </form>
+      </React.Fragment>
+    );
+  }
+}

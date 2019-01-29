@@ -8,6 +8,7 @@ import TaskForm from "./tasks/TaskForm"
 
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
+import EventsForm from "./events/EventsForm"
 
 export default class ApplicationViews extends Component {
 
@@ -57,6 +58,13 @@ export default class ApplicationViews extends Component {
       })
     )
   }
+
+  addEvent = (event) => EventManager.post(event)
+  .then(() => EventManager.getAll())
+  .then(events => this.setState({
+     events
+    })
+  )
 
   // ADDING A TASK:
    addTask = (task) => TaskManager.post(task)
@@ -111,7 +119,7 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/events" render={props => {
+          exact path="/events" render={props => {
             return <Events {...props}  events={this.state.events} deleteEvent={this.deleteEvent}/>
             // Remove null and return the component which will show the user's tasks
           }}
@@ -121,6 +129,12 @@ export default class ApplicationViews extends Component {
                     return <TaskForm {...props}
                        addTask={this.addTask}
                        tasks={this.state.tasks} />
+                   }} />
+
+        <Route exact path="/events/new" render={(props) => {
+                    return <EventsForm {...props}
+                       addEvent={this.addEvent}
+                       events={this.state.events} />
                    }} />
 
       </React.Fragment>
