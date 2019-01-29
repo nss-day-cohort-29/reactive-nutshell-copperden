@@ -19,7 +19,7 @@ export default class Login extends Component {
     }
 
     // Simplistic handler for login submit
-    handleLogin = (e) => {
+    handleRegister = (e) => {
         e.preventDefault()
 
         /*
@@ -37,13 +37,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleLogin}>
-                <h2>Please sign in</h2>
+            <form onSubmit={this.handleRegister}>
+                <h2>Sign up</h2>
                 <label htmlFor="inputUsername">
-                </label> <br></br>
+                </label><br></br>
                 <input onChange={this.handleFieldChange} type="text"
                        id="username"
-                       placeholder="Username"
+                       placeholder="Enter a username"
                        required autoFocus="" />
                        <br></br>
                 <label htmlFor="inputPassword">
@@ -51,15 +51,13 @@ export default class Login extends Component {
                 <br></br>
                 <input onChange={this.handleFieldChange} type="password"
                        id="password"
-                       placeholder="Password"
+                       placeholder="Enter a password"
                        required />
                        <br></br>
 
                 <button type="submit" className="btn btn-primary signIn">
-                    Sign in
+                    Sign Up
                 </button>
-
-                <p className="signUp">Don't have an account? <Link className="nav-link signUpLink" to="/register">Sign Up</Link></p>
             </form>
         )
     }

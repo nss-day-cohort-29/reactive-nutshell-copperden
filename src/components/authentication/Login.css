@@ -14,6 +14,10 @@
     .signIn{
         margin-top:20px;
     }
+
+    .signUp{
+        padding-top:20px;
+    }
 }
 
 @media (min-width: 500px) {
@@ -39,5 +43,9 @@
     .signUp{
         padding-top:20px;
         margin-left: 20px;
+    }
+
+    .signUpLink{
+        padding-left:50px;
     }
 }

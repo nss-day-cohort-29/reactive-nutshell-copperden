@@ -11,6 +11,7 @@ import EventsForm from "./events/EventsForm"
 import EventEditForm from "./events/EventEditForm"
 import TaskEditForm from './tasks/TaskEditForm'
 import Login from './authentication/Login'
+import Register from './authentication/Register'
 
 export default class ApplicationViews extends Component {
 
@@ -112,6 +113,8 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
 
         <Route path="/login" component={Login} />
+
+        <Route path="/register" component={Register} />
 
         <Route
           exact path="/" render={props => {
