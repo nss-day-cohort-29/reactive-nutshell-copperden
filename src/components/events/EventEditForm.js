@@ -3,9 +3,9 @@ import EventManager from '../../modules/EventManager'
 
 export default class EventEditForm extends Component{
   state={
-    eventName: "",
-    eventDate: "",
-    eventLocation: ""
+    name: "",
+    date: "",
+    location: ""
   }
 
   handleFieldChange = evt => {
@@ -14,11 +14,11 @@ export default class EventEditForm extends Component{
     this.setState(stateToChange)
 }
   componentDidMount(){
-    EventManager.get(this.props.match.params.eventId).then(events => {
+    EventManager.get(this.props.match.params.eventsId).then(events => {
       this.setState({
-        eventName:events.eventName,
-        eventDate:events.eventDate,
-        eventLocation:events.eventLocation
+        name:events.name,
+        date:events.date,
+        location:events.location
       })
     })
   }
@@ -27,11 +27,11 @@ export default class EventEditForm extends Component{
       evt.preventDefault()
 
       const existingEvent = {
-        eventName:this.state.eventName,
-        eventDate: this.state.eventDate,
-        eventLocation:this.state.eventLocation
+        name:this.state.name,
+        date: this.state.date,
+        location:this.state.location
       }
-      this.props.updateEvent(this.props.match.params.eventId, existingEvent)
+      this.props.updateEvent(this.props.match.params.eventsId, existingEvent)
       .then(() => this.props.history.push("/events"))
     }
 
@@ -40,32 +40,32 @@ export default class EventEditForm extends Component{
         <React.Fragment>
             <form className="eventForm">
                 <div className="form-group">
-                    <label htmlFor="eventName">What do you need to do?</label>
+                    <label htmlFor="name">Event Name</label>
                     <input type="text" required
                           className="form-control"
                           onChange={this.handleFieldChange}
-                          id="eventName"
-                          value={this.state.eventName}
+                          id="name"
+                          value={this.state.name}
                           />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="dueDate">When do you need it done?</label>
+                    <label htmlFor="date">Event Date</label>
                     <input type="date" required
                           className="form-control"
                           onChange={this.handleFieldChange}
-                          id="dueDate"
-                          value={this.state.dueDate}
+                          id="date"
+                          value={this.state.date}
                           />
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="completed"></label>
-                    <input type="checkbox" required
+                <div className="form-group">
+                    <label htmlFor="location">Event Location</label>
+                    <input type="text" required
                           className="form-control"
                           onChange={this.handleFieldChange}
-                          id="completed"
-                          value={this.state.completed}
+                          id="location"
+                          value={this.state.location}
                           />
-                </div> */}
+                </div>
                 <button type="submit" onClick={this.updateExistingEvent} className="btn btn-primary">Update</button>
             </form>
         </React.Fragment>
