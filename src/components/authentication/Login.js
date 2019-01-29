@@ -5,7 +5,7 @@ export default class Login extends Component {
 
     // Set initial state
     state = {
-        email: "",
+        username: "",
         password: ""
     }
 
@@ -27,7 +27,7 @@ export default class Login extends Component {
         sessionStorage.setItem(
             "credentials",
             JSON.stringify({
-                email: this.state.email,
+                username: this.state.username,
                 password: this.state.password
             })
         )
@@ -36,21 +36,24 @@ export default class Login extends Component {
     render() {
         return (
             <form onSubmit={this.handleLogin}>
-                <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label htmlFor="inputEmail">
-                    Email address
-                </label>
-                <input onChange={this.handleFieldChange} type="email"
-                       id="email"
-                       placeholder="Email address"
+                <h2>Please sign in</h2>
+                <label htmlFor="inputUsername">
+                    Username:
+                </label> <br></br>
+                <input onChange={this.handleFieldChange} type="text"
+                       id="username"
+                       placeholder="John Doe"
                        required autoFocus="" />
+                       <br></br> <hr></hr>
                 <label htmlFor="inputPassword">
-                    Password
+                    Password:
                 </label>
+                <br></br>
                 <input onChange={this.handleFieldChange} type="password"
                        id="password"
                        placeholder="Password"
                        required />
+                       <br></br> <hr></hr>
                 <button type="submit">
                     Sign in
                 </button>

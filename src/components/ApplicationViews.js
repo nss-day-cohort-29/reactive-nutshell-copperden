@@ -32,7 +32,7 @@ export default class ApplicationViews extends Component {
         events: allEvents
       });
     })
-    
+
     ChatManager.getAll()
         .then(allMessages => {
             this.setState({ messages: allMessages })
@@ -46,7 +46,7 @@ export default class ApplicationViews extends Component {
     })
   }
 
-  
+
 
   deleteTask = (id) => {
     return TaskManager.removeAndList(id)
