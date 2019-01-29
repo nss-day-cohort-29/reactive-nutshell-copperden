@@ -11,7 +11,6 @@ export default class EventsForm extends Component {
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
     const eventToChange = {};
-    console.log(evt.target.id, evt.target.value);
     eventToChange[evt.target.id] = evt.target.value;
     this.setState(eventToChange);
   };
@@ -24,6 +23,10 @@ export default class EventsForm extends Component {
     evt.preventDefault();
     if (this.state.eventName === "") {
       window.alert("Please enter a name for your event.");
+    } else if (this.state.eventDate === "") {
+      window.alert("Please enter a date for your event.")
+    } else if (this.state.eventLocation === "") {
+      window.alert("Please enter a location for your event.")
     } else {
       const event = {
         name: this.state.eventName,
@@ -43,14 +46,14 @@ export default class EventsForm extends Component {
       <React.Fragment>
         <form className="eventForm">
           <div className="form-group">
-            <label htmlFor="eventName">Event name</label>
+            <label htmlFor="eventName">Event Name</label>
             <input
               type="text"
               required
               className="form-control"
               onChange={this.handleFieldChange}
               id="eventName"
-              placeholder="Event name"
+              placeholder="Event Name"
             />
           </div>
           <div className="form-group">

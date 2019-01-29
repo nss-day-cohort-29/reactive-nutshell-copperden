@@ -23,12 +23,12 @@ export class Events extends Component {
           <p className="event-location">{event.location}</p>
       {/* Button confirms deletion of event. If the user confirms deletion, event is deleted */}
           <button onClick={() => {
-           let deleteConfirmation = window.confirm("Are you sure?")
+           let deleteConfirmation = window.confirm(`Are you sure you want to delete ${event.name} on ${event.date}?`)
             if(deleteConfirmation === true) {
             this.props.deleteEvent(event.id)}}}>Delete</button>
-          <button>
+          {/* <button>
           <Link className="nav-link" to={`/events/${event.id}/edit`}>Edit</Link>
-          </button>
+          </button> */}
       </div>
       )}
        

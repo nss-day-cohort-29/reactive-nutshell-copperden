@@ -5,11 +5,11 @@ import EventManager from "../modules/EventManager"
 import TaskList from "./tasks/TaskList"
 import TaskManager from "../modules/TaskManager"
 import TaskForm from "./tasks/TaskForm"
-
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
 import EventsForm from "./events/EventsForm"
 import EventEditForm from "./events/EventEditForm"
+import TaskEditForm from './tasks/TaskEditForm'
 
 export default class ApplicationViews extends Component {
 
@@ -74,6 +74,17 @@ export default class ApplicationViews extends Component {
       tasks: tasks
      })
    )
+
+  //  EDIT A TASK:
+  updateTask = (taskId, editedTaskObj) => {
+    return TaskManager.put(taskId, editedTaskObj)
+    .then(() => TaskManager.getAllTasks())
+    .then(tasks => {
+      this.setState({
+        tasks:tasks
+      })
+    })
+  }
 
    addMessage = (message) => ChatManager.post(message)
     .then(() => ChatManager.getAll())
@@ -153,6 +164,10 @@ export default class ApplicationViews extends Component {
             return <EventEditForm {...props} updateEvent={this.updateEvent}/>
           }}
         />
+          {/* Route for edding a task */}
+          <Route exact path='/tasks/:taskId(\d+)/edit' render={(props => {
+            return <TaskEditForm {...props} updateTask = {this.updateTask}/>
+          })} />
 
       </React.Fragment>
     );
