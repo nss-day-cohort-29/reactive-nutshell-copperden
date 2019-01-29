@@ -19,9 +19,18 @@
         padding-top: 25px;
     }
 
+    .event-button-link {
+        display: flex;
+        justify-content: center;
+    }
+
 }
 
 @media (min-width: 501px) {
+
+    body{
+        text-align: center;
+    }
 
     .event-list-btn{
         position: fixed;
@@ -36,12 +45,28 @@
         padding-top: 25px;
         padding-left: 15px;
     }
+    
+    .event-button-link {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20%;
+    }
 }
 
-.event-list > .event-card {
-    background-color: aquamarine;
-}
+.event-card:first-child {
+    background-color: #f0f0f0;
+    padding-top: 2%;
+  }
 
-.event-list > .event-card ~ .event-card {
-    background-color: none;
-}
+.event-header {
+    background-color: #f0f0f0;
+    margin: 0%;
+    color: #428bca;
+    padding-top: 2%;
+  }
+
+ 
+
+  .event-card {
+      padding-top: 5%;
+  }
