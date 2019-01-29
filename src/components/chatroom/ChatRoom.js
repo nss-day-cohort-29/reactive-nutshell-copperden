@@ -78,12 +78,18 @@ export default class ChatRoom extends Component {
         chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
     }
 
-    editLink() {
-        console.log("Yay!")
-        // const {msg} = this.refs;
-        // let editField = document.createElement("p");
-        // editField.innerHTML = "Yay!"
-        // msg.appendChild = editField;
+    // When "edit" link is clicked, replace chat message with edit field
+    editLink = () => {
+        console.log("Yay!");
+        ChatManager.get(this.props.match.params.messageId)
+        .then(message => {
+            this.setState({
+                message: message.message,
+                timeDisplay: message.timeDisplay,
+                timestamp: message.timestamp,
+                userID: message.userId
+             })
+        })
     }
 
     // Edit existing message
@@ -101,6 +107,27 @@ export default class ChatRoom extends Component {
         .then(() => this.props.history.push("/messages"))
     }
 
+    returnFormOrLabel = (message) => {
+        if (this.state.message !== "") {
+            return (
+                <div className="message_text">
+                    <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
+                        <input type="text" required
+                        className="form-control"
+                        onChange={this.handleFieldChange}
+                        id="message"
+                        value={this.state.message} />
+                        <button type="submit" className="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            )
+        } else {
+            return (
+                <div className="message_text">{message}</div>
+            )
+        }
+    }
+
     render() {
         return (
             <section className="chatroom">
@@ -112,7 +139,23 @@ export default class ChatRoom extends Component {
                             <div className="message_box">
                                 <span className="username"><strong>{message.user.name}</strong> wrote:</span>
                                 <br />
-                                <div className="message_text" ref={`msg`}>{message.message}</div>
+
+                                {/* if this state then show */}
+                                {/* <div className="message_text">
+                                    <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
+                                        <input type="text" required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="message"
+                                        value={message.message} />
+                                        <button type="submit" className="btn btn-primary">Update</button>
+                                    </form>
+                                </div>
+
+                                {/* else show this */}
+                                {/* <div className="message_text">{message.message}</div> */}
+                                {this.returnFormOrLabel(message.message)}
+
                                 <div className="bottom_info">
                                     {message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>Edit</a>
                                     {/* <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link> */}
