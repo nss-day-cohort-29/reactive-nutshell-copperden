@@ -33,6 +33,7 @@ export default class Login extends Component {
                 email: this.state.email
             })
         )
+        this.props.history.push("/news")
     }
 
     render() {
@@ -58,10 +59,13 @@ export default class Login extends Component {
                 {/* <button type="submit" className="btn btn-primary signIn">
                     Sign in
                 </button> */}
-                <button type="submit" className="btn btn-primary signIn">Sign in <Link to="/news"></Link></button>
+                <button type="submit" className="btn btn-primary signIn" >Sign in</button>
 
                 <p className="signUp">Don't have an account? <Link className="nav-link signUpLink" to="/register">Sign Up</Link></p>
             </form>
         )
     }
+
+
+    // onClick={() => this.props.history.push("/news")}
 }
