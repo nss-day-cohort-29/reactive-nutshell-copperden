@@ -7,6 +7,7 @@ import TaskForm from "./tasks/TaskForm"
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
 import TaskEditForm from './tasks/TaskEditForm'
+import NewsManager from "../modules/NewsManager";
 
 export default class ApplicationViews extends Component {
 
@@ -19,6 +20,10 @@ export default class ApplicationViews extends Component {
   };
 
   componentDidMount() {
+
+    NewsManager.getAllArticles().then(allArticles => {
+      this.setState({ articles: allArticles})
+    })
 
     ChatManager.getAll()
         .then(allMessages => {

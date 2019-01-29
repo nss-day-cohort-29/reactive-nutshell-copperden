@@ -56,7 +56,6 @@ export default class NewsForm extends Component {
             id="synopsis"
             placeholder="Article summary" />
           </div>
-
         </form>
       </React.Fragment>
     )
