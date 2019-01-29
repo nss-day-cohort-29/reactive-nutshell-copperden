@@ -8,7 +8,7 @@ export default class Login extends Component {
     // Set initial state
     state = {
         username: "",
-        password: ""
+        email: ""
     }
 
     // Update state whenever an input field is edited
@@ -30,7 +30,7 @@ export default class Login extends Component {
             "credentials",
             JSON.stringify({
                 username: this.state.username,
-                password: this.state.password
+                email: this.state.email
             })
         )
     }
@@ -46,18 +46,19 @@ export default class Login extends Component {
                        placeholder="Username"
                        required autoFocus="" />
                        <br></br>
-                <label htmlFor="inputPassword">
+                <label htmlFor="inputEmail">
                 </label>
                 <br></br>
-                <input onChange={this.handleFieldChange} type="password"
-                       id="password"
-                       placeholder="Password"
+                <input onChange={this.handleFieldChange} type="email"
+                       id="email"
+                       placeholder="Email"
                        required />
                        <br></br>
 
-                <button type="submit" className="btn btn-primary signIn">
+                {/* <button type="submit" className="btn btn-primary signIn">
                     Sign in
-                </button>
+                </button> */}
+                <button type="submit" className="btn btn-primary signIn">Sign in <Link to="/news"></Link></button>
 
                 <p className="signUp">Don't have an account? <Link className="nav-link signUpLink" to="/register">Sign Up</Link></p>
             </form>
