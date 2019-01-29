@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import "./Login.css"
+import { Link } from "react-router-dom"
 
 
 export default class Login extends Component {
@@ -38,25 +40,26 @@ export default class Login extends Component {
             <form onSubmit={this.handleLogin}>
                 <h2>Please sign in</h2>
                 <label htmlFor="inputUsername">
-                    Username:
                 </label> <br></br>
                 <input onChange={this.handleFieldChange} type="text"
                        id="username"
-                       placeholder="John Doe"
+                       placeholder="Username"
                        required autoFocus="" />
-                       <br></br> <hr></hr>
+                       <br></br>
                 <label htmlFor="inputPassword">
-                    Password:
                 </label>
                 <br></br>
                 <input onChange={this.handleFieldChange} type="password"
                        id="password"
                        placeholder="Password"
                        required />
-                       <br></br> <hr></hr>
-                <button type="submit" className="btn btn-primary">
+                       <br></br>
+
+                <button type="submit" className="btn btn-primary signIn">
                     Sign in
                 </button>
+
+                <p className="signUp">Don't have an account? <Link className="nav-link" to="/">Sign Up</Link></p>
             </form>
         )
     }
