@@ -16,7 +16,7 @@ export default class EventsForm extends Component {
   };
 
   /*
-        Local method for validation, creating animal object, and
+        Local method for validation, creating event object and
         invoking the function reference passed from parent component
      */
   constructNewEvent = evt => {
@@ -34,7 +34,7 @@ export default class EventsForm extends Component {
         location: this.state.eventLocation
       };
 
-      // Create the animal and redirect user to animal list
+      // Create the event and redirect user to event list
       this.props
         .addEvent(event)
         .then(() => this.props.history.push("/events"));
@@ -59,7 +59,7 @@ export default class EventsForm extends Component {
           <div className="form-group">
             <label htmlFor="date">Date</label>
             <input
-              type="text"
+              type="date"
               required
               className="form-control"
               onChange={this.handleFieldChange}
@@ -78,22 +78,6 @@ export default class EventsForm extends Component {
               placeholder="Location"
             />
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="location">Location</label>
-            <select
-              defaultValue=""
-              name="location"
-              id="location"
-              onChange={this.handleFieldChange}
-            >
-              <option value="">Select an employee</option>
-              {this.props.employees.map(e => (
-                <option key={e.id} id={e.id}>
-                  {e.name}
-                </option>
-              ))}
-            </select>
-          </div> */}
           <button
             type="submit"
             onClick={this.constructNewEvent}

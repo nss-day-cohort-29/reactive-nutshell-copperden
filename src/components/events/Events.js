@@ -26,7 +26,7 @@ export class Events extends Component {
            let deleteConfirmation = window.confirm(`Are you sure you want to delete ${event.name} on ${event.date}?`)
             if(deleteConfirmation === true) {
             this.props.deleteEvent(event.id)}}}>Delete</button>
-          
+      {/*Link that brings up the edit form when clicked  */}
           <Link className="nav-link" to={`/events/${event.id}/edit`}>Edit</Link>
           
       </div>
