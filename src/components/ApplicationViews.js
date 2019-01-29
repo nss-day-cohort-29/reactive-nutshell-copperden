@@ -73,14 +73,14 @@ export default class ApplicationViews extends Component {
   )
 
   updateEvent = (eventId, editedEventObj) => {
-    return EventManager.put(eventId, editedEventObj)
-    .then(() => EventManager.getAll())
-    .then(events => {
-      this.setState({
-        events
-      })
-    });
-  }
+      return EventManager.put(eventId, editedEventObj)
+      .then(() => EventManager.getAll())
+      .then(events => {
+        this.setState({
+          events:events
+        })
+      });
+    }
 
   // ADDING A TASK:
    addTask = (task) => TaskManager.post(task)
@@ -164,7 +164,7 @@ export default class ApplicationViews extends Component {
       }} />
           }}
         />
-
+      {/* Event Page */}
         <Route
           exact path="/events" render={props => {
             return <Events {...props}  events={this.state.events} deleteEvent={this.deleteEvent}/>
@@ -177,13 +177,13 @@ export default class ApplicationViews extends Component {
                        addTask={this.addTask}
                        tasks={this.state.tasks} />
                    }} />
-
+        {/* Route to add event form */}
         <Route exact path="/events/new" render={(props) => {
                     return <EventsForm {...props}
                        addEvent={this.addEvent}
                        events={this.state.events} />
                    }} />
-
+        {/* Route to event edit page */}
         <Route
           path="/events/:eventsId(\d+)/edit" render={props => {
             return <EventEditForm {...props} updateEvent={this.updateEvent}/>
