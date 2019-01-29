@@ -10,20 +10,24 @@
 }
 
 .message_box {
-    margin: 20px;
+    margin: 10px;
 }
 
 .message_text {
     background-color: #f8f8f8;
+    border-radius: 15px;
+    font-size: 14px;
     padding: 10px;
 }
 
 .username {
     font-size: 12px;
+    margin: 0px 10px;
 }
 
 .bottom_info {
     font-size: 10px;
+    margin: 3px 10px;
     text-align: right;
 }
 

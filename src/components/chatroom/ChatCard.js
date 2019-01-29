@@ -32,7 +32,7 @@ export default class ChatCard extends Component {
     //     })
     // }
 
-    // When "edit" link is clicked, replace chat message with edit field
+    // When "edit" link is clicked, set state for current ChatCard
     editLink = () => {
         ChatManager.get(this.props.message.id)
         .then(message => {
@@ -45,7 +45,46 @@ export default class ChatCard extends Component {
         })
     }
 
-    // Edit existing message
+    // This is called inside render.
+    // If 'message' in state is not empty, show edit field.
+    // Otherwise, show the static message text.
+    returnFormOrText = (message) => {
+        if (this.state.message !== "") {
+            return (
+                <div className="message_text">
+                    <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
+                        <input type="text" required
+                        className="form-control"
+                        onChange={this.handleFieldChange}
+                        id="message"
+                        value={this.state.message} />
+                    </form>
+                </div>
+            )
+        } else {
+            return (
+                <div className="message_text">{message}</div>
+            )
+        }
+    }
+
+    userConditional = (userId) => {
+        if (this.props.message.userId === 1) {
+            return (
+                <div className="bottom_info">
+                    {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>Edit</a>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className="bottom_info">{this.props.message.timeDisplay}</div>
+            )
+        }
+    }
+
+    // Edit existing message upon submission.
+    // Resets 'message' in state to empty so that static message text displays.
     updateExistingMessage = evt => {
         evt.preventDefault();
 
@@ -64,40 +103,16 @@ export default class ChatCard extends Component {
         })
     }
 
-    returnFormOrLabel = (message) => {
-        if (this.state.message !== "") {
-            return (
-                <div className="message_text">
-                    <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
-                        <input type="text" required
-                        className="form-control"
-                        onChange={this.handleFieldChange}
-                        id="message"
-                        value={this.state.message} />
-                    </form>
-                </div>
-            )
-        } else {
-            return (
-                <div className="message_text" onClick={this.editLink}>{message}</div>
-            )
-        }
-    }
-
     render() {
         return (
-                <div key={this.props.message.id}>
+                <div key={this.props.message.id} id="ChatCard_wrapper">
                     <div className="message_box">
                         <span className="username"><strong>{this.props.message.user.name}</strong> wrote:</span>
                         <br />
 
-                        {this.returnFormOrLabel(this.props.message.message)}
+                        {this.returnFormOrText(this.props.message.message)}
+                        {this.userConditional(this.props.message.userId)}
 
-                        <div className="bottom_info">
-                            {this.props.message.timeDisplay}
-                             {/* | <a href="#" className="edit_link" onClick={this.editLink}>Edit</a> */}
-                            {/* <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link> */}
-                        </div>
                     </div>
                 </div>
 
