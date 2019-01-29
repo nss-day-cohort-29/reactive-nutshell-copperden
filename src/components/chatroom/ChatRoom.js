@@ -55,16 +55,25 @@ export default class ChatRoom extends Component {
 
     }
 
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom() {
+        const {chatBox} = this.refs;
+        chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
+    }
+
     render() {
         return (
             <section className="chatroom">
                 <h1>Chat</h1>
-                <div className="chat_box">
+                <div className="chat_box" ref={`chatBox`}>
                 {
                     this.props.messages.map(message =>
                         <div key={message.id}>
                             <div className="message_box">
-                                <span className="username">{message.user.name} wrote:</span>
+                                <span className="username"><strong>{message.user.name}</strong> wrote:</span>
                                 <br />
                                 <div className="message_text">{message.message}</div>
                                 <div className="bottom_info">
@@ -75,7 +84,7 @@ export default class ChatRoom extends Component {
                     )
                 }
                 </div>
-                <form id="chatMessageForm" onSubmit={this.addNewMessage}>
+                <form className="chatMessageForm" onSubmit={this.addNewMessage}>
                     <div className="message_input">
                         <input type="text" required
                             placeholder="Enter your message here"
