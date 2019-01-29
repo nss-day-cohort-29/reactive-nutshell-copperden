@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
+import "./Events.css"
 
 export class Events extends Component {
 
@@ -11,10 +12,8 @@ export class Events extends Component {
         return new Date(eventA.date) - new Date(eventB.date)})
         
     return (
-      <>
-      <button className="btn btn-primary" onClick={() => {
-                        this.props.history.push("/events/new")}
-                    }>Add Event</button>
+      <div className="event-list">
+      
       {/* Building out each event and putting it on the DOM */}
       {sortedEvents.map(event => 
       <div key={event.id} className="event-card">
@@ -30,9 +29,14 @@ export class Events extends Component {
           <Link className="nav-link" to={`/events/${event.id}/edit`}>Edit</Link>
           
       </div>
+      
       )}
+
+        <button className="btn btn-primary event-list-btn" onClick={() => {
+        this.props.history.push("/events/new")}
+        }>Add Event</button>
        
-      </>
+      </div>
     )
   }
 }
