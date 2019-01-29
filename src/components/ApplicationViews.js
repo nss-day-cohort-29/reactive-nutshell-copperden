@@ -15,6 +15,7 @@ import Login from './authentication/Login'
 export default class ApplicationViews extends Component {
 
   state = {
+    users: [],
     articles: [],
     connections: [],
     messages: [],
@@ -144,7 +145,8 @@ export default class ApplicationViews extends Component {
             return <ChatRoom {...props}
                     messages={this.state.messages}
                     addMessage={this.addMessage}
-                    updateMessage={this.updateMessage} />
+                    updateMessage={this.updateMessage}
+                    users={this.state.users} />
           }}
         />
 
