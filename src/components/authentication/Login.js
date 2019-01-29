@@ -33,7 +33,7 @@ export default class Login extends Component {
                 email: this.state.email
             })
         )
-        this.props.history.push("/news")
+        this.props.history.push("/")
     }
 
     render() {
