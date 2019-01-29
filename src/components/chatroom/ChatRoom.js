@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import "./ChatRoom.css"
+import ChatManager from '../../modules/ChatManager';
 
 export default class ChatRoom extends Component {
 
@@ -20,6 +21,7 @@ export default class ChatRoom extends Component {
         this.setState(stateToChange)
     }
 
+    // Add new message to chat room
     addNewMessage = event => {
         event.preventDefault();     // Cancels the default action of the submit.
         event.target.reset();       // Resets values after submit.
@@ -52,9 +54,21 @@ export default class ChatRoom extends Component {
 
         // Create the message and then refresh chatroom
         this.props.addMessage(newMessage)
-
     }
 
+    componentDidMount() {
+        ChatManager.get(this.props.match.params.messageId)
+        .then(message => {
+            this.setState({
+                message: this.state.message,
+                timeDisplay: this.state.timeDisplay,
+                timestamp: this.state.timestamp,
+                userID: this.state.userId
+             })
+        })
+    }
+
+    // Set scrollbar to bottom
     componentDidUpdate() {
         this.scrollToBottom();
     }
@@ -62,6 +76,29 @@ export default class ChatRoom extends Component {
     scrollToBottom() {
         const {chatBox} = this.refs;
         chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
+    }
+
+    editLink() {
+        console.log("Yay!")
+        // const {msg} = this.refs;
+        // let editField = document.createElement("p");
+        // editField.innerHTML = "Yay!"
+        // msg.appendChild = editField;
+    }
+
+    // Edit existing message
+    updateExistingMessage = evt => {
+        evt.preventDefault();
+
+        const existingMessage = {
+            message: this.state.message,
+            timeDisplay: this.state.timeDisplay,
+            timestamp: this.state.timestamp,
+            userID: this.state.userId
+        }
+
+        this.props.updateMessage(this.props.match.params.messageId, existingMessage)
+        .then(() => this.props.history.push("/messages"))
     }
 
     render() {
@@ -75,9 +112,10 @@ export default class ChatRoom extends Component {
                             <div className="message_box">
                                 <span className="username"><strong>{message.user.name}</strong> wrote:</span>
                                 <br />
-                                <div className="message_text">{message.message}</div>
+                                <div className="message_text" ref={`msg`}>{message.message}</div>
                                 <div className="bottom_info">
-                                    {message.timeDisplay} | <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link>
+                                    {message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>Edit</a>
+                                    {/* <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link> */}
                                 </div>
                             </div>
                         </div>

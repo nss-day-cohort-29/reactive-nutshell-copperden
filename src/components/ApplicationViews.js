@@ -99,7 +99,8 @@ export default class ApplicationViews extends Component {
           path="/messages" render={props => {
             return <ChatRoom {...props}
                     messages={this.state.messages}
-                    addMessage={this.addMessage} />
+                    addMessage={this.addMessage}
+                    updateMessage={this.updateMessage} />
           }}
         />
 
