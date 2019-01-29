@@ -98,7 +98,7 @@ export default class ApplicationViews extends Component {
       .then(() => EventManager.getAll())
       .then(events => {
         this.setState({
-          events
+          events:events
         })
       });
     }
