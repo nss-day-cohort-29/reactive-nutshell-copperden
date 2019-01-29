@@ -37,7 +37,8 @@ export default class TaskList extends Component {
                                {/* Complete <br></br> */}
                                <a href="#"> <input type="checkbox" /></a>
                             </label>
-                   {/* ADD LINK CHECK GITHUB */}
+                   {/* ADD LINK FOR EDITCHECK GITHUB */}
+                   <Link className="nav-link" to={`/tasks/${task.id}/edit`}>Edit</Link>
 
                 </div>
             </div>

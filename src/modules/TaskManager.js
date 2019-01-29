@@ -1,6 +1,17 @@
 const remoteURL = "http://localhost:5002"
 
 export default {
+    // "Put" for the edit
+    put(taskId, existingTask){
+      return fetch(`${remoteURL}/tasks/${taskId}`,{
+        method:'PUT',
+        headers:{
+          "Content-Type": "application/JSON"
+        },
+        body:JSON.stringify(existingTask)
+
+      })
+    },
     // getting all tasks:
     getAllTasks() {
         return fetch(`${remoteURL}/tasks`).then(e => e.json())
@@ -23,6 +34,9 @@ export default {
       },
       body: JSON.stringify(newTask)
     }).then(data => data.json())
+  },
+
+  get(id){
+    return fetch(`${remoteURL}/tasks/${id}`).then(res => res.json())
   }
-    //   CHECK GITHUB FOR EDIT
 }
