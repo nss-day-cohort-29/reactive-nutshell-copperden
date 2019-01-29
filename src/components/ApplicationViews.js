@@ -10,6 +10,7 @@ import ChatManager from "../modules/ChatManager"
 import EventsForm from "./events/EventsForm"
 import EventEditForm from "./events/EventEditForm"
 import TaskEditForm from './tasks/TaskEditForm'
+import Login from './authentication/Login'
 
 export default class ApplicationViews extends Component {
 
@@ -20,6 +21,9 @@ export default class ApplicationViews extends Component {
     tasks: [],
     events: []
   };
+
+  // Check if credentials are in local storage
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
   componentDidMount() {
 
@@ -119,6 +123,8 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
 
+        <Route path="/login" component={Login} />
+
         <Route
           exact path="/" render={props => {
             return null
@@ -144,10 +150,15 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/tasks" render={props => {
-            return  <Route exact path="/tasks" render={(props) => {
-              return <TaskList {...props}
-              deleteTask={this.deleteTask}
-              tasks={this.state.tasks} />
+              return  <Route exact path="/tasks" render={(props) => {
+                // LOGIN:
+                if (this.isAuthenticated()) {
+                      return <TaskList {...props}
+                      deleteTask={this.deleteTask}
+                      tasks={this.state.tasks} />
+                } else {
+                      return <Redirect to="/login" />
+                }
       }} />
           }}
         />
