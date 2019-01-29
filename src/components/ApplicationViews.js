@@ -56,6 +56,16 @@ export default class ApplicationViews extends Component {
         })
     )
 
+    updateMessage = (messageId, editedMessage) => {
+      return ChatManager.put(messageId, editedMessage)
+      .then(() => ChatManager.getAll())
+      .then(messages => {
+          this.setState({
+            messages: messages
+          })
+      })
+  }
+
   render() {
     return (
       <React.Fragment>
