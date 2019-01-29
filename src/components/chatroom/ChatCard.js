@@ -68,11 +68,11 @@ export default class ChatCard extends Component {
         }
     }
 
-    userConditional = (userId) => {
+    userConditionalEdit = (userId) => {
         if (this.props.message.userId === 1) {
             return (
                 <div className="bottom_info">
-                    {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>Edit</a>
+                    {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>edit</a>
                 </div>
             )
         }
@@ -80,6 +80,17 @@ export default class ChatCard extends Component {
             return (
                 <div className="bottom_info">{this.props.message.timeDisplay}</div>
             )
+        }
+    }
+
+    userConditionalStyle = (userId) => {
+        if (this.props.message.userId === 1) {
+            let style = "current_user";
+            return style;
+        }
+        else {
+            let style = "other_user"
+            return style;
         }
     }
 
@@ -98,20 +109,19 @@ export default class ChatCard extends Component {
         this.props.updateMessage(this.props.message.id, existingMessage)
         // .then(() => this.props.history.push("/messages"))
         .then(() => {
-            console.log("Success!")
             this.setState({ message: "" })
         })
     }
 
     render() {
+
         return (
-                <div key={this.props.message.id} id="ChatCard_wrapper">
+                <div key={this.props.message.id} class={this.userConditionalStyle(this.props.message.userId)}>
                     <div className="message_box">
-                        <span className="username"><strong>{this.props.message.user.name}</strong> wrote:</span>
-                        <br />
+                        <span className="username">{this.props.message.user.name}</span>
 
                         {this.returnFormOrText(this.props.message.message)}
-                        {this.userConditional(this.props.message.userId)}
+                        {this.userConditionalEdit(this.props.message.userId)}
 
                     </div>
                 </div>
