@@ -12,7 +12,7 @@ export class Events extends Component {
         
     return (
       <>
-      <button onClick={() => {
+      <button className="btn btn-primary" onClick={() => {
                         this.props.history.push("/events/new")}
                     }>Add Event</button>
       {/* Building out each event and putting it on the DOM */}
@@ -22,13 +22,13 @@ export class Events extends Component {
           <p className="event-date">{event.date}</p>
           <p className="event-location">{event.location}</p>
       {/* Button confirms deletion of event. If the user confirms deletion, event is deleted */}
-          <button onClick={() => {
+          <button className="btn btn-primary" onClick={() => {
            let deleteConfirmation = window.confirm(`Are you sure you want to delete ${event.name} on ${event.date}?`)
             if(deleteConfirmation === true) {
             this.props.deleteEvent(event.id)}}}>Delete</button>
-          {/* <button>
+      {/*Link that brings up the edit form when clicked  */}
           <Link className="nav-link" to={`/events/${event.id}/edit`}>Edit</Link>
-          </button> */}
+          
       </div>
       )}
        

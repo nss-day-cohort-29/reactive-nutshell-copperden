@@ -4,7 +4,9 @@
 
 .chat_box {
     border: 1px solid #666;
+    height: 500px;
     margin-bottom: 10px;
+    overflow-y: auto;
 }
 
 .message_box {
@@ -14,6 +16,10 @@
 .message_text {
     background-color: #f8f8f8;
     padding: 10px;
+}
+
+.username {
+    font-size: 12px;
 }
 
 .bottom_info {
