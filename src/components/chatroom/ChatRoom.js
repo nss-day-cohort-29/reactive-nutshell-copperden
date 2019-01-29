@@ -20,8 +20,9 @@ export default class ChatRoom extends Component {
         this.setState(stateToChange)
     }
 
-    addNewMessage = evt => {
-        evt.preventDefault();
+    addNewMessage = event => {
+        event.preventDefault();     // Cancels the default action of the submit.
+        event.target.reset();       // Resets values after submit.
 
         let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
         let d = new Date();
@@ -51,7 +52,7 @@ export default class ChatRoom extends Component {
 
         // Create the message and then refresh chatroom
         this.props.addMessage(newMessage)
-        .then(() => this.props.history.push("/messages"))
+
     }
 
     render() {
@@ -74,7 +75,7 @@ export default class ChatRoom extends Component {
                     )
                 }
                 </div>
-                <form className="chatMessageForm">
+                <form id="chatMessageForm" onSubmit={this.addNewMessage}>
                     <div className="message_input">
                         <input type="text" required
                             placeholder="Enter your message here"
@@ -83,7 +84,7 @@ export default class ChatRoom extends Component {
                             id="message" />
                     </div>
                     <div className="message_btn">
-                        <button type="submit" onClick={this.addNewMessage} className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </section>
