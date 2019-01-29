@@ -17,7 +17,10 @@ export class Events extends Component {
           <h3 className="even-header">{event.name}</h3>
           <p className="event-date">{event.date}</p>
           <p className="event-location">{event.location}</p>
-          <button>Delete</button>
+          <button onClick={() => {
+           let deleteConfirmation = window.confirm("Are you sure?")
+            if(deleteConfirmation === true) {
+            this.props.deleteEvent(event.id)}}}>Delete</button>
           <button>Edit</button>
       </div>
       )}

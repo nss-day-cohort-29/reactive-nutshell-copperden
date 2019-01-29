@@ -16,9 +16,12 @@ export default {
       body: JSON.stringify(newEvent)
     }).then(data => data.json());
   },
-  deleteEvent(id) {
+  removeAndList(id){
     return fetch(`http://localhost:5002/events/${id}`, {
         method: "DELETE"
     })
+    .then(e => e.json())
+    .then(() => fetch(`http://localhost:5002/events`))
+    .then(e => e.json())
 }
 };

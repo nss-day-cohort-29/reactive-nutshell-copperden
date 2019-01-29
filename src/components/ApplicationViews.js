@@ -25,16 +25,7 @@ export default class ApplicationViews extends Component {
       this.setState({
         events: allEvents
       });
-    });
-
-    // EventManager.deleteEvent = (id) => {
-    //   return EventManager.removeAndList(id)
-    //   .then(animals => this.setState({
-    //       animals: animals
-    //     })
-    //   )
-    // }
-
+    })
     
     ChatManager.getAll()
         .then(allMessages => {
@@ -49,10 +40,20 @@ export default class ApplicationViews extends Component {
     })
   }
 
+  
+
   deleteTask = (id) => {
     return TaskManager.removeAndList(id)
     .then(tasks => this.setState({
         tasks: tasks
+      })
+    )
+  }
+
+  deleteEvent = (id) => {
+    return EventManager.removeAndList(id)
+    .then(events => this.setState({
+        events
       })
     )
   }
@@ -111,7 +112,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return <Events {...props} events={this.state.events} />
+            return <Events {...props}  events={this.state.events} deleteEvent={this.deleteEvent}/>
             // Remove null and return the component which will show the user's tasks
           }}
         />
