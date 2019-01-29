@@ -7,6 +7,7 @@ import TaskForm from "./tasks/TaskForm"
 import ChatRoom from "./chatroom/ChatRoom"
 import ChatManager from "../modules/ChatManager"
 import TaskEditForm from './tasks/TaskEditForm'
+import Login from './authentication/Login'
 
 export default class ApplicationViews extends Component {
 
@@ -17,6 +18,9 @@ export default class ApplicationViews extends Component {
     tasks: [],
     events: []
   };
+
+  // Check if credentials are in local storage
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
   componentDidMount() {
 
@@ -71,6 +75,8 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
 
+        <Route path="/login" component={Login} />
+
         <Route
           exact path="/" render={props => {
             return null
@@ -96,9 +102,13 @@ export default class ApplicationViews extends Component {
         <Route
           path="/tasks" render={props => {
             return  <Route exact path="/tasks" render={(props) => {
+              if (this.isAuthenticated()) {
               return <TaskList {...props}
               deleteTask={this.deleteTask}
               tasks={this.state.tasks} />
+              } else {
+                return <Redirect to="/login" />
+              }
       }} />
             // Remove null and return the component which will show the user's tasks
           }}
