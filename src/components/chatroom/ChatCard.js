@@ -106,7 +106,7 @@ export default class ChatCard extends Component {
         // if the user isn't the session user
         if (this.props.message.userId !== 1) {              // change to SESSION USER
             // fetch all friends
-            return fetch("http://localhost:5002/friends")
+            return fetch("http://localhost:5002/friends?userId=2&currentUserId=1")
             .then(data => data.json())
             .then(allConnections => {
                 // for each friend connection
