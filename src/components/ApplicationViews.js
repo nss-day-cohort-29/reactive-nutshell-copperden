@@ -232,14 +232,24 @@ export default class ApplicationViews extends Component {
 
         {/* Route to event edit page */}
         <Route path="/events/:eventsId(\d+)/edit" render={props => {
-            return <EventEditForm {...props} updateEvent={this.updateEvent} />
+          if (this.isAuthenticated()) {
+            return <EventEditForm {...props}
+                    updateEvent={this.updateEvent}  />
+          } else {
+            return <Redirect to="/login" />
+          }
           }}
         />
 
         {/* Route for edding a task */}
-        <Route exact path='/tasks/:taskId(\d+)/edit' render={(props => {
-          return <TaskEditForm {...props} updateTask={this.updateTask} />
-        })} />
+        <Route path="/tasks/:taskId(\d+)/edit" render={props => {
+          if (this.isAuthenticated()) {
+            return <TaskEditForm {...props}
+                  updateTask={this.updateTask}  />
+          } else {
+            return <Redirect to="/login" />
+          }
+          }} />
 
       </React.Fragment>
     );
