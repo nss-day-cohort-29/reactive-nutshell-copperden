@@ -1,14 +1,16 @@
 import React, { Component } from "react"
 import "./Login.css"
 import { Link } from "react-router-dom"
+import SignUpManager from '../../modules/SignUpManager'
 
 
 export default class Login extends Component {
 
     // Set initial state
     state = {
-        username: "",
-        email: ""
+        name: "",
+        email: "",
+        id:""
     }
 
     // Update state whenever an input field is edited
@@ -18,8 +20,9 @@ export default class Login extends Component {
         this.setState(stateToChange)
     }
 
+
     // Simplistic handler for login submit
-    handleLogin = (e) => {
+    handleRegister = (e) => {
         e.preventDefault()
 
         /*
@@ -29,22 +32,36 @@ export default class Login extends Component {
         sessionStorage.setItem(
             "credentials",
             JSON.stringify({
-                username: this.state.username,
-                email: this.state.email
+                name: this.state.name,
+                email: this.state.email,
+                id: this.state.id
             })
         )
-        this.props.history.push("/")
+    }
+
+
+    constructNewUser = () => {
+            const user = {
+                name: this.state.name,
+                email: this.state.email,
+                id: this.state.id
+            }
+
+            this.props.addUser(user).then(response => {
+                console.log(response)
+                this.props.history.push("/")
+            })
     }
 
     render() {
         return (
-            <form onSubmit={this.handleLogin}>
-                <h2>Please sign in</h2>
+            <form onSubmit={this.handleRegister}>
+                <h2>Sign up</h2>
                 <label htmlFor="inputUsername">
-                </label> <br></br>
+                </label><br></br>
                 <input onChange={this.handleFieldChange} type="text"
-                       id="username"
-                       placeholder="Username"
+                       id="name"
+                       placeholder="Enter your username"
                        required autoFocus="" />
                        <br></br>
                 <label htmlFor="inputEmail">
@@ -52,20 +69,14 @@ export default class Login extends Component {
                 <br></br>
                 <input onChange={this.handleFieldChange} type="email"
                        id="email"
-                       placeholder="Email"
+                       placeholder="Enter your email"
                        required />
                        <br></br>
 
-                {/* <button type="submit" className="btn btn-primary signIn">
-                    Sign in
-                </button> */}
-                <button type="submit" className="btn btn-primary signIn" >Sign in</button>
-
-                <p className="signUp">Don't have an account? <Link className="nav-link signUpLink" to="/register">Sign Up</Link></p>
+                <button type="submit" onClick={() => this.constructNewUser()} className="btn btn-primary signIn">
+                    Sign Up
+                </button>
             </form>
         )
     }
-
-
-    // onClick={() => this.props.history.push("/news")}
 }
