@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import "./ChatRoom.css"
-// import ChatManager from '../../modules/ChatManager';
 import ChatCard from "./ChatCard"
+// import FriendsManager from "../modules/FriendsManager"
 
 export default class ChatRoom extends Component {
 
