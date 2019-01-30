@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default class NewsList extends Component {
   render() {
@@ -9,7 +9,8 @@ export default class NewsList extends Component {
           <button type="button"
             className="btn btn-success"
             onClick={() => {
-              this.props.history.push("/articles/new")
+              console.log("Button pressed.")
+              // this.props.history.push("/articles/new")
             }
             }>
             Add News article
