@@ -22,17 +22,18 @@ export default class Login extends Component {
     handleLogin = (e) => {
         e.preventDefault()
 
-        /*
-            For now, just store the email and password that
-            the customer enters into local storage.
-        */
+    //    Setting username in session storage. Grabbing the username from session storage and searching through "users" in the datatbase. The .find attempts to find a username that matches the username in session storage. If able to find a match, log in under that user. If not, display message that username not found.
+       
         sessionStorage.setItem(
-            "credentials",
-            JSON.stringify({
-                username: this.state.username,
-                email: this.state.email
-            })
-        )
+            "username",
+            this.state.username)
+        
+        let currentUser = sessionStorage.getItem("username")
+        let authenticated = this.props.users.find(user => 
+            user.name === currentUser)
+        
+            
+            console.log(authenticated)
         this.props.history.push("/")
     }
 

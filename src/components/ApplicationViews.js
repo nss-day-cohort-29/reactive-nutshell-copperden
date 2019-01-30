@@ -15,13 +15,16 @@ import NewsList from "./news/NewsList";
 import Login from './authentication/Login'
 import Register from './authentication/Register'
 import SignUpManager from "../modules/SignUpManager";
+import Friends from "./friends/Friends"
+import FriendsManager from "../modules/FriendsManager"
+import UsersManager from "../modules/UsersManager"
 
 export default class ApplicationViews extends Component {
 
   state = {
     users: [],
     articles: [],
-    connections: [],
+    friends: [],
     messages: [],
     tasks: [],
     events: []
@@ -32,12 +35,23 @@ export default class ApplicationViews extends Component {
 
   componentDidMount() {
 
+    UsersManager.getAll().then(allUsers => {
+      this.setState({ users: allUsers });
+    })
+
+
     NewsManager.getAllArticles()
       .then(allArticles => {
         this.setState({ articles: allArticles })
       })
     EventManager.getAll().then(allEvents => {
       this.setState({ events: allEvents });
+    })
+
+
+
+    FriendsManager.getAll().then(allFriends => {
+      this.setState({ friends: allFriends });
     })
 
     ChatManager.getAll()
@@ -148,7 +162,9 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
 
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={(props) => {
+          return <Login {...props} users={this.state.users} />
+        }} />
 
         <Route path="/register" render={(props) => {
                     return <Register {...props}
@@ -164,8 +180,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return <Friends friends={this.state.friends} />
           }}
         />
 
