@@ -47,31 +47,33 @@ export default class Login extends Component {
         // }
 
         return (
-            <form onSubmit={this.handleLogin}>
-                <h2>Please sign in</h2>
-                <label htmlFor="inputUsername">
-                </label> <br></br>
-                <input onChange={this.handleFieldChange} type="text"
-                       id="username"
-                       placeholder="Username"
-                       required autoFocus="" />
-                       <br></br>
-                <label htmlFor="inputEmail">
-                </label>
-                <br></br>
-                <input onChange={this.handleFieldChange} type="email"
-                       id="email"
-                       placeholder="Email"
-                       required />
-                       <br></br>
+            <section className="login">
+                <form onSubmit={this.handleLogin}>
+                    <h2>Please sign in</h2>
+                    <label htmlFor="inputUsername">
+                    </label> <br></br>
+                    <input onChange={this.handleFieldChange} type="text"
+                        id="username"
+                        placeholder="Username"
+                        required autoFocus="" />
+                        <br></br>
+                    <label htmlFor="inputEmail">
+                    </label>
+                    <br></br>
+                    <input onChange={this.handleFieldChange} type="email"
+                        id="email"
+                        placeholder="Email"
+                        required />
+                        <br></br>
 
-                {/* <button type="submit" className="btn btn-primary signIn">
-                    Sign in
-                </button> */}
-                <button type="submit" className="btn btn-primary signIn" >Sign in</button>
+                    {/* <button type="submit" className="btn btn-primary signIn">
+                        Sign in
+                    </button> */}
+                    <button type="submit" className="btn btn-primary signIn" >Sign in</button>
 
-                <p className="signUp">Don't have an account? <Link className="nav-link signUpLink" to="/register">Sign Up</Link></p>
-            </form>
+                    <p className="signUp">Don't have an account? <Link className="nav-link signUpLink" to="/register">Sign Up</Link></p>
+                </form>
+            </section>
         )
     }
 

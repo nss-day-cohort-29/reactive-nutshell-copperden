@@ -1,7 +1,7 @@
 
 
 @media (max-width: 500px) {
-    body{
+    .events {
         text-align: center;
     }
 
@@ -28,7 +28,7 @@
 
 @media (min-width: 501px) {
 
-    body{
+    .events {
         text-align: center;
     }
 
@@ -45,7 +45,7 @@
         padding-top: 25px;
         padding-left: 15px;
     }
-    
+
     .event-button-link {
         display: flex;
         justify-content: flex-end;
@@ -65,7 +65,7 @@
     padding-top: 2%;
   }
 
- 
+
 
   .event-card {
       padding-top: 5%;

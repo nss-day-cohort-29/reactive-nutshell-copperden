@@ -56,28 +56,30 @@ export default class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleRegister}>
-                <h2>Sign up</h2>
-                <label htmlFor="inputUsername">
-                </label><br></br>
-                <input onChange={this.handleFieldChange} type="text"
-                       id="name"
-                       placeholder="Enter your username"
-                       required autoFocus="" />
-                       <br></br>
-                <label htmlFor="inputEmail">
-                </label>
-                <br></br>
-                <input onChange={this.handleFieldChange} type="email"
-                       id="email"
-                       placeholder="Enter your email"
-                       required />
-                       <br></br>
+            <section className="register">
+                <form onSubmit={this.handleRegister}>
+                    <h2>Sign up</h2>
+                    <label htmlFor="inputUsername">
+                    </label><br></br>
+                    <input onChange={this.handleFieldChange} type="text"
+                        id="name"
+                        placeholder="Enter your username"
+                        required autoFocus="" />
+                        <br></br>
+                    <label htmlFor="inputEmail">
+                    </label>
+                    <br></br>
+                    <input onChange={this.handleFieldChange} type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required />
+                        <br></br>
 
-                <button type="submit" onClick={() => this.constructNewUser()} className="btn btn-primary signIn">
-                    Sign Up
-                </button>
-            </form>
+                    <button type="submit" onClick={() => this.constructNewUser()} className="btn btn-primary signIn">
+                        Sign Up
+                    </button>
+                </form>
+            </section>
         )
     }
 }

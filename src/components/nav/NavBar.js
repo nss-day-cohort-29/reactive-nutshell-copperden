@@ -29,7 +29,7 @@ class NavBar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/events">Events</Link>
                     </li>
-                    <li>
+                    <li className="nav-item">
                         <Link className="nav-link" onClick={this.clearSession} to="/login">Logout</Link>
                     </li>
                 </ul>
