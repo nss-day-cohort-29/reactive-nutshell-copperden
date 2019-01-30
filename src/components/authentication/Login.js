@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 
 
 export default class Login extends Component {
-
     // Set initial state
     state = {
         username: "",
@@ -42,6 +41,11 @@ export default class Login extends Component {
     }
 
     render() {
+
+        // if (this.username.length === 0) {
+        //     return null
+        // }
+
         return (
             <form onSubmit={this.handleLogin}>
                 <h2>Please sign in</h2>
