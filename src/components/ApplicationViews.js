@@ -13,6 +13,8 @@ import TaskEditForm from './tasks/TaskEditForm'
 import NewsManager from "../modules/NewsManager";
 import NewsList from "./news/NewsList";
 import Login from './authentication/Login'
+import Register from './authentication/Register'
+import SignUpManager from "../modules/SignUpManager";
 
 export default class ApplicationViews extends Component {
 
@@ -140,11 +142,18 @@ export default class ApplicationViews extends Component {
       })
   }
 
+    addUser = (user) => SignUpManager.post(user)
+
   render() {
     return (
       <React.Fragment>
 
         <Route path="/login" component={Login} />
+
+        <Route path="/register" render={(props) => {
+                    return <Register {...props}
+                       addUser={this.addUser} />
+                   }} />
 
         <Route
           exact path="/" render={props => {
