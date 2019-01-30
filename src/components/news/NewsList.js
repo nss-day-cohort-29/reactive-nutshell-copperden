@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 export default class NewsList extends Component {
   render() {
@@ -22,14 +22,16 @@ export default class NewsList extends Component {
             this.props.articles.map(article =>
               <div key={article.id} className="card">
                 <div className="card-body">
-                  <h5 className="card-title">
-                    {article.title}<br></br>
-                    {article.url}<br></br>
-                    {article.synopsis}<br></br>
+                  <h4 className="card-title">
+                    {article.title}
+                    <br></br>
+                    <a href={article.url}
+                      className="card-link">Read full article</a></h4>
+                    {article.synopsis}
+                    <br></br>
                     <a href="#"
                       onClick={() => this.props.deleteArticle(article.id)}
                       className="card-link">Delete</a>
-                  </h5>
                 </div>
               </div>
             )
