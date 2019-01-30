@@ -19,16 +19,24 @@ export default class NewsForm extends Component {
 
   makeNewsArticle = e => {
     e.preventDefault()
-    const news = {
+    if (this.state.title === "") {
+      window.alert("Please enter a title for your news article.");
+    } else if (this.state.url === "") {
+      window.alert("Please copy and paste the URL for your news article.") }
+      else if (this.state.synopsis === "") {
+        window.alert("Please include a brief synopsis about your news article."); }
+        else {
+    const article = {
       title: this.state.title,
       url: this.state.url,
       synopsis: this.state.synopsis,
       timestamp: Date.now(),
       userId: 1
-    }
+    };
     // Creates the news article and redirects user to articles list
-    this.props.addNews(news).then(() => this.props.history.push("/articles"))
+    this.props.addArticle(article).then(() => this.props.history.push("/"))
   }
+}
 
   render() {
     return (
@@ -47,8 +55,8 @@ export default class NewsForm extends Component {
             <input type="url" required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="title"
-              placeholder="Title" />
+              id="url"
+              placeholder="URL" />
           </div>
           <div className="form-group">
             <label htmlFor="synopsis">Synopsis</label>
