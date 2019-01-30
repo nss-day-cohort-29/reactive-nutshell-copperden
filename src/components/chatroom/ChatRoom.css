@@ -45,6 +45,10 @@
     float: right;
 }
 
+.other_user .hover_friend {
+    color: red;
+}
+
 .bottom_info {
     font-size: 10px;
     margin: 3px 10px;

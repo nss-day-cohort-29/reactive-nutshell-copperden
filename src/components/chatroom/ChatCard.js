@@ -20,18 +20,6 @@ export default class ChatCard extends Component {
         this.setState(stateToChange)
     }
 
-    // componentDidMount() {
-    //     ChatManager.get(this.props.match.params.messageId)
-    //     .then(message => {
-    //         this.setState({
-    //             message: this.state.message,
-    //             timeDisplay: this.state.timeDisplay,
-    //             timestamp: this.state.timestamp,
-    //             userId: this.state.userId
-    //          })
-    //     })
-    // }
-
     // When "edit" link is clicked, set state for current ChatCard
     editLink = () => {
         ChatManager.get(this.props.message.id)
@@ -49,7 +37,7 @@ export default class ChatCard extends Component {
     // If 'message' in state is not empty, show edit field.
     // Otherwise, show the static message text.
     returnFormOrText = (message) => {
-        if (this.state.message !== "") {
+        if (this.state.message !== "" && this.state.userId === 1) {
             return (
                 <div className="message_text">
                     <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
@@ -63,26 +51,27 @@ export default class ChatCard extends Component {
             )
         } else {
             return (
-                <div className="message_text">{message}</div>
+                <div className="message_text" onClick={this.editLink}>{message}</div>
             )
         }
     }
 
-    userConditionalEdit = (userId) => {
-        if (this.props.message.userId === 1) {
-            return (
-                <div className="bottom_info">
-                    {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>edit</a>
-                </div>
-            )
-        }
-        else {
-            return (
-                <div className="bottom_info">{this.props.message.timeDisplay}</div>
-            )
-        }
-    }
+    // userConditionalEdit = (userId) => {
+    //     if (this.props.message.userId === 1) {
+    //         return (
+    //             <div className="bottom_info">
+    //                 {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>edit</a>
+    //             </div>
+    //         )
+    //     }
+    //     else {
+    //         return (
+    //             <div className="bottom_info">{this.props.message.timeDisplay}</div>
+    //         )
+    //     }
+    // }
 
+    // Sets the "bubble" style for current user vs other users
     userConditionalStyle = (userId) => {
         if (this.props.message.userId === 1) {
             let style = "current_user";
@@ -107,21 +96,29 @@ export default class ChatCard extends Component {
         }
 
         this.props.updateMessage(this.props.message.id, existingMessage)
-        // .then(() => this.props.history.push("/messages"))
         .then(() => {
             this.setState({ message: "" })
         })
     }
 
-    render() {
+    // Event listener that asks if you want to friend a user when you click on their username.
+    addFriend = () => {
+        if (this.props.message.userId !== 1) {
+            if (window.confirm(`Do you want to add ${this.props.message.user.name} as a friend?`)) {
+                console.log("HI FREN");
+            }
+        }
+    }
 
+    render() {
         return (
                 <div key={this.props.message.id} className={this.userConditionalStyle(this.props.message.userId)}>
                     <div className="message_box">
-                        <span className="username">{this.props.message.user.name}</span>
+                        <span className="username" onClick={this.addFriend}>{this.props.message.user.name}</span>
 
                         {this.returnFormOrText(this.props.message.message)}
-                        {this.userConditionalEdit(this.props.message.userId)}
+                        {/* {this.userConditionalEdit(this.props.message.userId)} */}
+                        <div className="bottom_info">{this.props.message.timeDisplay}</div>
 
                     </div>
                 </div>
