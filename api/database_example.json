@@ -34,28 +34,36 @@
   ],
   "articles": [
     {
-      "id": 1,
-      "title": "User 1 Article (#1)",
-      "url": "http://google.com",
-      "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur purus eget est rutrum tincidunt. Vestibulum a velit accumsan quam scelerisque efficitur. Proin tincidunt magna id orci ultricies vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis laoreet lacus nibh, id tincidunt enim euismod in. Sed egestas sapien orci, in vestibulum ipsum tempor id. Aenean eleifend mi dui, in consequat lacus laoreet quis.",
-      "timestamp": "1457395221082",
-      "userId": 1
+      "title": "Rick Astley is on a (Rick) roll",
+      "url": "https://www.cnn.com/2017/02/16/entertainment/rick-astley/index.html",
+      "synopsis": "Rick Astley told CNN that years ago, when a friend emailed him a link and the video for \"Never Gonna Give You Up\" appeared, he didn't realize it was a prank.\n\"I thought, what is he doing? This isn't actually very funny,\" Astley said of the moment. \"Then he did it again. Ultimately, I called him and he said 'Don't you know what this is?' I said 'No, you are just an idiot' and he explained to me that it was this thing.\"",
+      "timestamp": 1548869484736,
+      "userId": 1,
+      "id": 7
     },
     {
-      "id": 4,
-      "title": "User 1 Article (#2)",
-      "url": "http://google.com",
-      "synopsis": "Fusce turpis mi, sollicitudin quis maximus ac, facilisis vel lectus. Duis laoreet sollicitudin odio at viverra. Phasellus scelerisque, ante id lacinia cursus, elit nunc ullamcorper ipsum, vel faucibus sapien lectus nec nisl. In dui lorem, dignissim sit amet turpis pulvinar, congue malesuada ligula. Morbi dignissim, est vel lacinia mollis, magna ligula posuere arcu, rhoncus ultricies est dui vel risus.",
-      "timestamp": "1047395221082",
-      "userId": 1
+      "title": "Deadly polar vortex puts the Midwest in a deep freeze",
+      "url": "https://www.washingtonpost.com/weather/2019/01/30/deadly-polar-vortex-puts-midwest-deep-freeze/?utm_term=.7fc2bd6f0268",
+      "synopsis": "MADISON, Wis. — Winter. Is. Here.\nAcross the Midwest on Wednesday, people awoke to a relentless, bone-deep freeze, with extreme temperatures that would have been sobering even without the appendage of a minus sign. With few exceptions, officials encouraged them to stay indoors at all costs — and for many, there would be little choice but to do so.",
+      "timestamp": 1548870270248,
+      "userId": 1,
+      "id": 8
     },
     {
-      "id": 5,
-      "title": "User 3 Article (#1)",
-      "url": "http://google.com",
-      "synopsis": "Fusce turpis mi, sollicitudin quis maximus ac, facilisis vel lectus. Duis laoreet sollicitudin odio at viverra. Phasellus scelerisque, ante id lacinia cursus, elit nunc ullamcorper ipsum, vel faucibus sapien lectus nec nisl. In dui lorem, dignissim sit amet turpis pulvinar, congue malesuada ligula. Morbi dignissim, est vel lacinia mollis, magna ligula posuere arcu, rhoncus ultricies est dui vel risus.",
-      "timestamp": "1647495221082",
-      "userId": 2
+      "title": "Minnesota Resident Thinking Of Finally Packing It All Up And Moving Someplace Warm Like Michigan",
+      "url": "https://local.theonion.com/minnesota-resident-thinking-of-finally-packing-it-all-u-1832169119",
+      "synopsis": "MINNEAPOLIS—Admitting that this week’s extreme wind chills were starting to get to her, Minnesota resident Anne Mauer confirmed Tuesday that she’s seriously thinking of packing it all up and moving somewhere warm like Michigan.",
+      "timestamp": 1548870352423,
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "title": "Weezer Drops Surprise ‘Teal Album’ of Covers",
+      "url": "http://loyolaphoenix.com/2019/01/weezer-drops-surprise-teal-album-of-covers/",
+      "synopsis": "The power of memes shouldn’t be underestimated. For the band Weezer, what started as a seemingly innocent tweet resulted in the release of a cover song. Now that song has turned into an entire album of covers.",
+      "timestamp": 1548870562192,
+      "userId": 1,
+      "id": 10
     }
   ],
   "tasks": [
