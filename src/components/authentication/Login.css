@@ -1,5 +1,9 @@
 @media (max-width: 500px) {
-    input{
+    .login, .register {
+        text-align: center;
+    }
+
+    input {
         border: 1px solid #D5D5D5;
         padding: 5px;
         border-radius: 6px;
@@ -21,6 +25,10 @@
 }
 
 @media (min-width: 500px) {
+    .login, .register {
+        text-align: center;
+    }
+
     input{
         border: 1px solid #D5D5D5;
         padding: 5px;
