@@ -1,5 +1,6 @@
 .chatroom {
     margin: 10px;
+    max-width: 400px;
 }
 
 .chat_box {
@@ -9,22 +10,47 @@
     overflow-y: auto;
 }
 
-.message_box {
-    margin: 20px;
+.current_user .message_box {
+    float: right;
+    margin: 10px;
+    width: 80%;
+}
+
+.other_user .message_box {
+    float: left;
+    margin: 10px;
+    width: 80%;
+    text-align: left;
 }
 
 .message_text {
     background-color: #f8f8f8;
+    border-radius: 15px;
+    font-size: 14px;
     padding: 10px;
+    text-align: left;
+}
+
+.current_user .message_text {
+    background-color: lavender;
+    clear: right;
 }
 
 .username {
+    color: #222;
     font-size: 12px;
+    font-weight: bold;
+    margin: 0px 10px;
+    text-align: left;
+}
+
+.current_user .username, .current_user .bottom_info {
+    float: right;
 }
 
 .bottom_info {
     font-size: 10px;
-    text-align: right;
+    margin: 3px 10px;
 }
 
 .edit_link {
@@ -38,6 +64,10 @@
 
 .message_input {
     width: 100%;
+}
+
+.message_input input {
+    text-align: left;
 }
 
 .message_btn {
