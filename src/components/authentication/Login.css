@@ -1,0 +1,51 @@
+@media (max-width: 500px) {
+    input{
+        border: 1px solid #D5D5D5;
+        padding: 5px;
+        border-radius: 6px;
+        text-align: center;
+        width: 60%;
+    }
+
+    h2{
+        padding-top:100px;
+    }
+
+    .signIn{
+        margin-top:20px;
+    }
+
+    .signUp{
+        padding-top:20px;
+    }
+}
+
+@media (min-width: 500px) {
+    input{
+        border: 1px solid #D5D5D5;
+        padding: 5px;
+        border-radius: 6px;
+        text-align: center;
+        width: 20%;
+        margin-left: 20px;
+    }
+
+    h2{
+        padding-top:70px;
+        margin-left: 10px;
+    }
+
+    .signIn{
+        margin-top:20px;
+        margin-left: 20px;
+    }
+
+    .signUp{
+        padding-top:20px;
+        margin-left: 20px;
+    }
+
+    .signUpLink{
+        padding-left:50px;
+    }
+}
