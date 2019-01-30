@@ -12,6 +12,7 @@ import EventEditForm from "./events/EventEditForm"
 import TaskEditForm from './tasks/TaskEditForm'
 import NewsManager from "../modules/NewsManager";
 import NewsList from "./news/NewsList";
+import NewsForm from "./news/NewsForm";
 import Login from './authentication/Login'
 import Register from './authentication/Register'
 import SignUpManager from "../modules/SignUpManager";
@@ -124,6 +125,13 @@ export default class ApplicationViews extends Component {
       )
   }
 
+  addArticle = (article) => NewsManager.post(article)
+    .then(() => NewsManager.getAllArticles())
+    .then(articles => this.setState({
+      articles: articles
+    })
+    )
+
   // ADDING A TASK:
   addTask = (task) => TaskManager.post(task)
     .then(() => TaskManager.getAllTasks())
@@ -142,7 +150,7 @@ export default class ApplicationViews extends Component {
       })
   }
 
-    addUser = (user) => SignUpManager.post(user)
+  addUser = (user) => SignUpManager.post(user)
 
   render() {
     return (
@@ -151,9 +159,9 @@ export default class ApplicationViews extends Component {
         <Route path="/login" component={Login} />
 
         <Route path="/register" render={(props) => {
-                    return <Register {...props}
-                       addUser={this.addUser} />
-                   }} />
+          return <Register {...props}
+            addUser={this.addUser} />
+        }} />
 
         <Route
           exact path="/" render={props => {
@@ -161,6 +169,12 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show news articles
           }}
         />
+        {/* Route for adding a new article */}
+        <Route path="/articles/new" render={(props) => {
+          return <NewsForm {...props}
+            addArticle={this.addArticle}
+            articles={this.state.articles} />
+        }} />
 
         <Route
           path="/friends" render={props => {

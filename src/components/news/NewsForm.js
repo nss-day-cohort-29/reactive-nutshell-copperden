@@ -27,7 +27,7 @@ export default class NewsForm extends Component {
       userId: 1
     }
     // Creates the news article and redirects user to articles list
-    this.props.addNews(news).then(() => this.props.history.push("/articles"))
+    this.props.addNews(news).then(() => this.props.history.push("/articles/new"))
   }
 
   render() {
