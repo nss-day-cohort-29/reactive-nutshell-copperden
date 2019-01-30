@@ -105,20 +105,25 @@ export default class ChatCard extends Component {
     addFriend = () => {
         // if the user isn't the session user
         if (this.props.message.userId !== 1) {              // change to SESSION USER
+            let currentUserId = 1;
+            let userId = this.props.message.userId;
+            console.log(userId)
             // fetch all friends
-            return fetch("http://localhost:5002/friends?userId=2&currentUserId=1")
+            return fetch(`http://localhost:5002/friends?userId=${userId}&currentUserId=${currentUserId}`)
             .then(data => data.json())
             .then(allConnections => {
-                // for each friend connection
-                allConnections.forEach(connection => {
-                    // if currentUserId === sessionUser && userId === this.props.message.userId
-                    if (connection.currentUserId !== 1 && connection.userId !== this.props.message.userId) {
+                // find this connection
+                let results = allConnections.find( connection => connection.currentUserId === 1 && connection.userId === userId );
+                console.log(results);
+                    if (results === undefined) {
                         if (window.confirm(`Do you want to add ${this.props.message.user.name} as a friend?`)) {
-                            console.log("HI FREN");
+                                 console.log("HI FREN");
+                            }
                     }
-                    // else { alert("You are already friends!"); }
+                    else {
+                        alert("You're already friends!")
                     }
-                }) // forEach closing
+
             }) // .then closing
         } // if closing
     }   // addFriend closing
