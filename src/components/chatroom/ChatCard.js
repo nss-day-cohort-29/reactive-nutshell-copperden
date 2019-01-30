@@ -104,12 +104,12 @@ export default class ChatCard extends Component {
     // Event listener that asks if you want to friend a user when you click on their username.
     addFriend = () => {
         // if the user isn't the session user
-        if (this.props.message.userId !== 1) {
-            // fetch all friends and filter by currentUserId
-            return fetch("http://localhost:5002/friends?_expand=currentUserId")
+        if (this.props.message.userId !== 1) {              // change to SESSION USER
+            // fetch all friends
+            return fetch("http://localhost:5002/friends")
             .then(data => data.json())
 
-            // for each friend connection, check to see if userId matches this.props.message.userId
+            // if currentUserId === sessionUser && userId === this.props.message.userId
             // if it does NOT, then show confirm dialog
 
             .then(() => {
