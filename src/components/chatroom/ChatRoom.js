@@ -54,7 +54,8 @@ export default class ChatRoom extends Component {
         }
 
         // Create the message and then refresh chatroom
-        this.props.addMessage(newMessage)
+        this.props.addMessage(newMessage);
+        this.scrollToBottom();
     }
 
     // Set scrollbar to bottom

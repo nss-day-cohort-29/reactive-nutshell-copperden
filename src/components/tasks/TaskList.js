@@ -36,7 +36,7 @@ export default class TaskList extends Component {
                             <label onClick={() => this.props.deleteTask(task.id)}
                     className="card-link">
                                {/* Complete <br></br> */}
-                               <a href="#"> <input type="checkbox" class="form-check-input"/></a>
+                               <a href="#"> <input type="checkbox" className="form-check-input"/></a>
                             </label>
                    {/* ADD LINK FOR EDITCHECK GITHUB */}
                    <Link className="nav-link" to={`/tasks/${task.id}/edit`}>Edit</Link>

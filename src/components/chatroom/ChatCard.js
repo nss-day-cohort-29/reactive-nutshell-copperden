@@ -32,7 +32,7 @@ export default class ChatCard extends Component {
     //     })
     // }
 
-    // When "edit" link is clicked, replace chat message with edit field
+    // When "edit" link is clicked, set state for current ChatCard
     editLink = () => {
         ChatManager.get(this.props.message.id)
         .then(message => {
@@ -45,26 +45,10 @@ export default class ChatCard extends Component {
         })
     }
 
-    // Edit existing message
-    updateExistingMessage = evt => {
-        evt.preventDefault();
-
-        const existingMessage = {
-            message: this.state.message,
-            timeDisplay: this.state.timeDisplay,
-            timestamp: this.state.timestamp,
-            userId: this.state.userId
-        }
-
-        this.props.updateMessage(this.props.message.id, existingMessage)
-        // .then(() => this.props.history.push("/messages"))
-        .then(() => {
-            console.log("Success!")
-            this.setState({ message: "" })
-        })
-    }
-
-    returnFormOrLabel = (message) => {
+    // This is called inside render.
+    // If 'message' in state is not empty, show edit field.
+    // Otherwise, show the static message text.
+    returnFormOrText = (message) => {
         if (this.state.message !== "") {
             return (
                 <div className="message_text">
@@ -79,25 +63,66 @@ export default class ChatCard extends Component {
             )
         } else {
             return (
-                <div className="message_text" onClick={this.editLink}>{message}</div>
+                <div className="message_text">{message}</div>
             )
         }
     }
 
+    userConditionalEdit = (userId) => {
+        if (this.props.message.userId === 1) {
+            return (
+                <div className="bottom_info">
+                    {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>edit</a>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className="bottom_info">{this.props.message.timeDisplay}</div>
+            )
+        }
+    }
+
+    userConditionalStyle = (userId) => {
+        if (this.props.message.userId === 1) {
+            let style = "current_user";
+            return style;
+        }
+        else {
+            let style = "other_user"
+            return style;
+        }
+    }
+
+    // Edit existing message upon submission.
+    // Resets 'message' in state to empty so that static message text displays.
+    updateExistingMessage = evt => {
+        evt.preventDefault();
+
+        const existingMessage = {
+            message: this.state.message,
+            timeDisplay: this.state.timeDisplay,
+            timestamp: this.state.timestamp,
+            userId: this.state.userId
+        }
+
+        this.props.updateMessage(this.props.message.id, existingMessage)
+        // .then(() => this.props.history.push("/messages"))
+        .then(() => {
+            this.setState({ message: "" })
+        })
+    }
+
     render() {
+
         return (
-                <div key={this.props.message.id}>
+                <div key={this.props.message.id} className={this.userConditionalStyle(this.props.message.userId)}>
                     <div className="message_box">
-                        <span className="username"><strong>{this.props.message.user.name}</strong> wrote:</span>
-                        <br />
+                        <span className="username">{this.props.message.user.name}</span>
 
-                        {this.returnFormOrLabel(this.props.message.message)}
+                        {this.returnFormOrText(this.props.message.message)}
+                        {this.userConditionalEdit(this.props.message.userId)}
 
-                        <div className="bottom_info">
-                            {this.props.message.timeDisplay}
-                             {/* | <a href="#" className="edit_link" onClick={this.editLink}>Edit</a> */}
-                            {/* <Link className="edit_link" to={`messages/${message.id}/edit`}>Edit</Link> */}
-                        </div>
                     </div>
                 </div>
 
