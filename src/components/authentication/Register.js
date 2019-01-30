@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import "./Login.css"
 import { Link } from "react-router-dom"
 import SignUpManager from '../../modules/SignUpManager'
+import back from'./loginAssests/back.png';
 
 
 export default class Login extends Component {
@@ -49,7 +50,8 @@ export default class Login extends Component {
 
             this.props.addUser(user).then(response => {
                 console.log(response)
-                this.props.history.push("/")
+                this.props.history.push("/login")
+                window.location.reload();
             })
     }
 
@@ -57,6 +59,7 @@ export default class Login extends Component {
         return (
             <section className="register">
                 <form onSubmit={this.handleRegister}>
+                <img src={back} onClick={() => this.props.history.push("/login")} className="backButton" alt="backButton" height="35" width="35"></img>
                     <h2>Sign up</h2>
                     <label htmlFor="inputUsername">
                     </label><br></br>

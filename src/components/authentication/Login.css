@@ -11,8 +11,12 @@
         width: 60%;
     }
 
-    .login h2, .register h2 {
+    .login h2{
         padding-top:100px;
+    }
+
+    .register h2{
+        padding-top:45px;
     }
 
     .signIn{
@@ -21,6 +25,11 @@
 
     .signUp{
         padding-top:20px;
+    }
+
+    .backButton{
+        margin-top:20px;
+        margin-right:300px;
     }
 }
 
@@ -54,6 +63,10 @@
     }
 
     .signUpLink{
-        padding-left:50px;
+        text-align: center;
+    }
+
+    .backButton{
+        display: none;
     }
 }

@@ -16,22 +16,30 @@ import NewsForm from "./news/NewsForm";
 import Login from './authentication/Login'
 import Register from './authentication/Register'
 import SignUpManager from "../modules/SignUpManager";
+import Friends from "./friends/Friends"
+import FriendsManager from "../modules/FriendsManager"
+import UsersManager from "../modules/UsersManager"
 
 export default class ApplicationViews extends Component {
 
   state = {
     users: [],
     articles: [],
-    connections: [],
+    friends: [],
     messages: [],
     tasks: [],
     events: []
   };
 
   // Check if credentials are in local storage
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+  isAuthenticated = () => sessionStorage.getItem("username") !== null
 
   componentDidMount() {
+
+    UsersManager.getAll().then(allUsers => {
+      this.setState({ users: allUsers });
+    })
+
 
     NewsManager.getAllArticles()
       .then(allArticles => {
@@ -39,6 +47,12 @@ export default class ApplicationViews extends Component {
       })
     EventManager.getAll().then(allEvents => {
       this.setState({ events: allEvents });
+    })
+
+
+
+    FriendsManager.getAll().then(allFriends => {
+      this.setState({ friends: allFriends });
     })
 
     ChatManager.getAll()
@@ -156,7 +170,9 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
 
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={(props) => {
+          return <Login {...props} users={this.state.users} />
+        }} />
 
         <Route path="/register" render={(props) => {
           return <Register {...props}
@@ -165,7 +181,9 @@ export default class ApplicationViews extends Component {
 
         <Route exact path="/" render={props => {
             if (this.isAuthenticated()) {
-              return <NewsList {...props} articles={this.state.articles} deleteArticle={this.deleteArticle} />
+              return <NewsList {...props}
+              articles={this.state.articles}
+              deleteArticle={this.deleteArticle} />
             } else {
               return <Redirect to="/login" />
             }
