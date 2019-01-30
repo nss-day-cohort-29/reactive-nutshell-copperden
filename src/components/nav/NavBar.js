@@ -5,6 +5,11 @@ import "./NavBar.css"
 
 
 class NavBar extends Component {
+
+    clearSession = () => {
+        sessionStorage.clear();
+    }
+
     render() {
         return (
             <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
@@ -23,6 +28,9 @@ class NavBar extends Component {
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/events">Events</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" onClick={this.clearSession} to="/login">Logout</Link>
                     </li>
                 </ul>
             </nav>
