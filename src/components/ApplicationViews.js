@@ -32,7 +32,7 @@ export default class ApplicationViews extends Component {
   };
 
   // Check if credentials are in local storage
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+  isAuthenticated = () => sessionStorage.getItem("username") !== null
 
   componentDidMount() {
 
@@ -181,7 +181,9 @@ export default class ApplicationViews extends Component {
 
         <Route exact path="/" render={props => {
             if (this.isAuthenticated()) {
-              return <NewsList {...props} articles={this.state.articles} deleteArticle={this.deleteArticle} />
+              return <NewsList {...props}
+              articles={this.state.articles}
+              deleteArticle={this.deleteArticle} />
             } else {
               return <Redirect to="/login" />
             }

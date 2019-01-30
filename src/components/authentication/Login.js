@@ -37,7 +37,9 @@ export default class Login extends Component {
                 alert("Whoops! We we couldn't find your account. Please re-renter a valid username and email or sign up below!")
                 window.location.reload()
                 // this.props.history.push("/register")
-            } else (this.props.history.push("/"))
+            } else {
+                this.props.history.push("/")
+            }
     }
 
     render() {

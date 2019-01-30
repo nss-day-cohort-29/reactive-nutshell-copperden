@@ -5,7 +5,7 @@ import "./Nutshell.css";
 
 class Nutshell extends Component {
 
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+  isAuthenticated = () => sessionStorage.getItem("username") !== null
 
   showNav = () => {
     if (this.isAuthenticated()) {
