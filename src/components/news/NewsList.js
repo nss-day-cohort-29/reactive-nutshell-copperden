@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 
@@ -10,7 +11,7 @@ export default class NewsList extends Component {
             className="btn btn-success"
             onClick={() => {
               console.log("Button pressed.")
-              // this.props.history.push("/articles/new")
+              this.props.history.push("/articles/new")
             }
             }>
             Add News article

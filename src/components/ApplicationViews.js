@@ -164,8 +164,8 @@ export default class ApplicationViews extends Component {
         }} />
 
         <Route
-          exact path="/" render={props => {
-            return <NewsList articles={this.state.articles} />
+          exact path="/" render={(props) => {
+            return <NewsList {...props} articles={this.state.articles} deleteArticle={this.deleteArticle} />
             // Remove null and return the component which will show news articles
           }}
         />
@@ -217,7 +217,7 @@ export default class ApplicationViews extends Component {
         {/* Route for adding a new task */}
         <Route path="/tasks/new" render={(props) => {
           return <TaskForm {...props}
-            addTask={this.addTask}
+
             tasks={this.state.tasks} />
         }} />
         {/* Route to add event form */}

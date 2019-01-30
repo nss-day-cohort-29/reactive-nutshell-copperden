@@ -19,7 +19,7 @@ export default class NewsForm extends Component {
 
   makeNewsArticle = e => {
     e.preventDefault()
-    const news = {
+    const article = {
       title: this.state.title,
       url: this.state.url,
       synopsis: this.state.synopsis,
@@ -27,7 +27,7 @@ export default class NewsForm extends Component {
       userId: 1
     }
     // Creates the news article and redirects user to articles list
-    this.props.addNews(news).then(() => this.props.history.push("/articles/new"))
+    this.props.addArticle(article).then(() => this.props.history.push("/articles/new"))
   }
 
   render() {
@@ -47,8 +47,8 @@ export default class NewsForm extends Component {
             <input type="url" required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="title"
-              placeholder="Title" />
+              id="url"
+              placeholder="URL" />
           </div>
           <div className="form-group">
             <label htmlFor="synopsis">Synopsis</label>
