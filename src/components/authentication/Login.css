@@ -3,7 +3,7 @@
         text-align: center;
     }
 
-    input {
+    .login input, .register input {
         border: 1px solid #D5D5D5;
         padding: 5px;
         border-radius: 6px;
@@ -11,7 +11,7 @@
         width: 60%;
     }
 
-    h2{
+    .login h2, .register h2 {
         padding-top:100px;
     }
 
@@ -29,7 +29,7 @@
         text-align: center;
     }
 
-    input{
+    .login input, .register input {
         border: 1px solid #D5D5D5;
         padding: 5px;
         border-radius: 6px;
@@ -38,7 +38,7 @@
         margin-left: 20px;
     }
 
-    h2{
+    .login h2, .register h2 {
         padding-top:70px;
         margin-left: 10px;
     }
