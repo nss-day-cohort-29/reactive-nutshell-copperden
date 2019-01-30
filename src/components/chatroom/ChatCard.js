@@ -116,7 +116,7 @@ export default class ChatCard extends Component {
     render() {
 
         return (
-                <div key={this.props.message.id} class={this.userConditionalStyle(this.props.message.userId)}>
+                <div key={this.props.message.id} className={this.userConditionalStyle(this.props.message.userId)}>
                     <div className="message_box">
                         <span className="username">{this.props.message.user.name}</span>
 
