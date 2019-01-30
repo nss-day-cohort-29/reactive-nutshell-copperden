@@ -66,6 +66,10 @@
     width: 100%;
 }
 
+.message_input input {
+    text-align: left;
+}
+
 .message_btn {
     padding-left: 10px;
 }
