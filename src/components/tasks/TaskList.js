@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default class TaskList extends Component {
     render () {
         return (
-            <React.Fragment>
+            <section className="tasks">
 
             {/* ADD TASK BUTTON */}
             <div className="taskButton">
@@ -45,7 +45,7 @@ export default class TaskList extends Component {
                 <hr></hr>
             </div>
                 )}
-            </React.Fragment>
+            </section>
         )
     }
 }

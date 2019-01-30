@@ -1,5 +1,5 @@
 @media (max-width: 500px) {
-    body{
+    .tasks {
         text-align: center;
     }
 
@@ -12,7 +12,7 @@
         font-size: 17px;
     }
 
-    h2{
+    .tasks h2{
         padding-bottom: 15px;
         padding-top: 25px;
     }
@@ -29,7 +29,7 @@
         border-radius: 0px;
     }
 
-    h2{
+    .tasks h2{
         padding-bottom: 15px;
         padding-top: 25px;
         padding-left: 15px;
