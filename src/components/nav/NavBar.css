@@ -1,5 +1,7 @@
 @media (max-width: 500px) {
-    body{
+    .centerMobileNav{
         font-size: 13px;
+        display: flex;
+        justify-content: space-around;
     }
 }

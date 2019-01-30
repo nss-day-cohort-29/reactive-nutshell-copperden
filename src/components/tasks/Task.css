@@ -1,5 +1,5 @@
 @media (max-width: 500px) {
-    body{
+    .tasks {
         text-align: center;
     }
 
@@ -12,11 +12,20 @@
         font-size: 17px;
     }
 
-    h2{
+    .tasks h2{
         padding-bottom: 15px;
         padding-top: 25px;
     }
 
+    .box{
+        padding-left:21px;
+        padding-bottom:25px;
+    }
+
+    .form-check-input{
+        width:20px;
+        height: 20px;
+    }
 }
 
 @media (min-width: 501px) {
@@ -29,10 +38,20 @@
         border-radius: 0px;
     }
 
-    h2{
+    .tasks h2{
         padding-bottom: 15px;
         padding-top: 25px;
         padding-left: 15px;
+    }
+
+    .box{
+        padding-left:40px;
+        padding-bottom:25px;
+    }
+
+    .form-check-input{
+        width:20px;
+        height: 20px;
     }
 }
 

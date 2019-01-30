@@ -4,10 +4,19 @@ import ApplicationViews from "./ApplicationViews";
 import "./Nutshell.css";
 
 class Nutshell extends Component {
+
+  isAuthenticated = () => sessionStorage.getItem("username") !== null
+
+  showNav = () => {
+    if (this.isAuthenticated()) {
+      return <NavBar />
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        {this.showNav()}
         <ApplicationViews />
       </React.Fragment>
     );

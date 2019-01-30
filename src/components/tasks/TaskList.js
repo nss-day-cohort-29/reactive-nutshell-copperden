@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default class TaskList extends Component {
     render () {
         return (
-            <React.Fragment>
+            <section className="tasks">
 
             {/* ADD TASK BUTTON */}
             <div className="taskButton">
@@ -33,11 +33,14 @@ export default class TaskList extends Component {
                     </h5>
 
                     {/* ADDING DELETE TO THE TASK PAGE */}
+                    <div className="box">
                             <label onClick={() => this.props.deleteTask(task.id)}
                     className="card-link">
+
                                {/* Complete <br></br> */}
                                <a href="#"> <input type="checkbox" className="form-check-input"/></a>
                             </label>
+                    </div>
                    {/* ADD LINK FOR EDITCHECK GITHUB */}
                    <Link className="nav-link" to={`/tasks/${task.id}/edit`}>Edit</Link>
 
@@ -45,7 +48,7 @@ export default class TaskList extends Component {
                 <hr></hr>
             </div>
                 )}
-            </React.Fragment>
+            </section>
         )
     }
 }
