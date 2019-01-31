@@ -1,3 +1,6 @@
+// Component that contains all chat messages and an "Add Message" input.
+// Author: Megan Cruzen
+
 import React, { Component } from 'react'
 import "./ChatRoom.css"
 import ChatCard from "./ChatCard"
@@ -16,7 +19,7 @@ export default class ChatRoom extends Component {
     // Update state whenever an input field is edited
     handleFieldChange = evt => {
         const stateToChange = {}
-        console.log(evt.target.id, evt.target.value);
+        // console.log(evt.target.id, evt.target.value);
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
@@ -77,7 +80,7 @@ export default class ChatRoom extends Component {
                     )
                 }
                 </div>
-                <form className="chatMessageForm" onSubmit={this.addNewMessage}>
+                <form id="chatMessageForm" className="d-flex justify-content-between" onSubmit={this.addNewMessage}>
                     <div className="message_input">
                         <input type="text" required
                             placeholder="Enter your message here"

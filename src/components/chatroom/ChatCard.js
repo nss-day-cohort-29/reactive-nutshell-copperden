@@ -1,3 +1,6 @@
+// Component that creates each chat message.
+// Author: Megan Cruzen
+
 import React, { Component } from 'react'
 import "./ChatRoom.css"
 import ChatManager from '../../modules/ChatManager';
@@ -15,7 +18,7 @@ export default class ChatCard extends Component {
     // Update state whenever an input field is edited
     handleFieldChange = evt => {
         const stateToChange = {}
-        console.log(evt.target.id, evt.target.value);
+        // console.log(evt.target.id, evt.target.value);
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
@@ -117,7 +120,7 @@ export default class ChatCard extends Component {
                 console.log(results);
                     if (results === undefined) {
                         if (window.confirm(`Do you want to add ${this.props.message.user.name} as a friend?`)) {
-                                 console.log("HI FREN");
+                                 console.log("HI FRIEND!");
                             }
                     }
                     else {

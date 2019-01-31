@@ -58,18 +58,9 @@
     text-decoration: underline;
 }
 
-.chatMessageForm {
-    display: flex;
-    justify-content: space-between;
-}
-
 .message_input {
     width: 100%;
 }
-
-/* .message_input input {
-    text-align: left;
-} */
 
 .message_btn {
     padding-left: 10px;
