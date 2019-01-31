@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import "./ChatRoom.css"
 import ChatManager from '../../modules/ChatManager';
+import FriendsManager from '../../modules/FriendsManager';
 
 export default class ChatCard extends Component {
 
@@ -40,10 +41,11 @@ export default class ChatCard extends Component {
     // If 'message' in state is not empty, show edit field.
     // Otherwise, show the static message text.
     returnFormOrText = (message) => {
-        if (this.state.message !== "" && this.state.userId === 1) {
+        let sessionUser = sessionStorage.getItem("userId");
+        if (this.state.message !== "" && this.state.userId === Number(sessionUser)) {
             return (
                 <div className="message_text">
-                    <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
+                    <form className="chatEditForm" onSubmit={this.updateExistingMessage} onMouseLeave={this.updateExistingMessage}>
                         <input type="text" required
                         className="form-control"
                         onChange={this.handleFieldChange}
@@ -59,24 +61,10 @@ export default class ChatCard extends Component {
         }
     }
 
-    // userConditionalEdit = (userId) => {
-    //     if (this.props.message.userId === 1) {
-    //         return (
-    //             <div className="bottom_info">
-    //                 {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>edit</a>
-    //             </div>
-    //         )
-    //     }
-    //     else {
-    //         return (
-    //             <div className="bottom_info">{this.props.message.timeDisplay}</div>
-    //         )
-    //     }
-    // }
-
     // Sets the "bubble" style for current user vs other users
     userConditionalStyle = (userId) => {
-        if (this.props.message.userId === 1) {
+        let sessionUser = sessionStorage.getItem("userId");
+        if (this.props.message.userId === Number(sessionUser)) {
             let style = "current_user";
             return style;
         }
@@ -86,8 +74,36 @@ export default class ChatCard extends Component {
         }
     }
 
+    // friendConditionalStyle = (userId) => {
+    //     let friendstyle = "";
+    //     let sessionUser = sessionStorage.getItem("userId");
+    //     if (this.props.message.userId !== Number(sessionUser)) {
+    //         // then look through connections
+    //         // fetch all friends
+    //         let currentUserId = Number(sessionUser);
+    //         console.log("session:", currentUserId, " | friend:", userId)
+    //         FriendsManager.getFriendship(currentUserId, userId)
+    //         .then(allConnections => {
+    //             // find this connection
+    //             let results = allConnections.find( connection => connection.currentUserId === Number(sessionUser) && connection.userId === userId );
+    //                 // if this connection does not exist, i.e. is undefined:
+    //                 if (results === undefined) {
+    //                     let friendstyle = "notfriend";
+    //                     return friendstyle;
+    //                 }
+    //                 else {
+    //                     let friendstyle = "friend";
+    //                     return friendstyle;
+    //                 }
+
+    //         })
+    //         return friendstyle;
+    //     }
+
+    //     console.log("style:", friendstyle);
+    // }
+
     // Edit existing message upon submission.
-    // Resets 'message' in state to empty so that static message text displays.
     updateExistingMessage = evt => {
         evt.preventDefault();
 
@@ -100,36 +116,49 @@ export default class ChatCard extends Component {
 
         this.props.updateMessage(this.props.message.id, existingMessage)
         .then(() => {
+            // Resets 'message' in state to empty so that static message text displays.
             this.setState({ message: "" })
         })
     }
 
+     // Create new friendship
+     createFriendship = (currentUserId, userId) => {
+
+        const newFriendship = {
+            currentUserId: currentUserId,
+            userId: userId
+        }
+
+        // POST the friendship
+        this.props.addFriend(newFriendship);
+    }
+
     // Event listener that asks if you want to friend a user when you click on their username.
     addFriend = () => {
+        let sessionUser = sessionStorage.getItem("userId");
+        // console.log(sessionUser);
         // if the user isn't the session user
-        if (this.props.message.userId !== 1) {              // change to SESSION USER
-            let currentUserId = 1;
+        if (this.props.message.userId !== Number(sessionUser)) {
+            let currentUserId = Number(sessionUser);
             let userId = this.props.message.userId;
-            console.log(userId)
             // fetch all friends
-            return fetch(`http://localhost:5002/friends?userId=${userId}&currentUserId=${currentUserId}`)
-            .then(data => data.json())
+            FriendsManager.getFriendship(currentUserId, userId)
             .then(allConnections => {
                 // find this connection
-                let results = allConnections.find( connection => connection.currentUserId === 1 && connection.userId === userId );
-                console.log(results);
+                let results = allConnections.find( connection => connection.currentUserId === Number(sessionUser) && connection.userId === userId );
+                    // if this connection does not exist, i.e. is undefined:
                     if (results === undefined) {
                         if (window.confirm(`Do you want to add ${this.props.message.user.name} as a friend?`)) {
-                                 console.log("HI FRIEND!");
+                                 this.createFriendship(currentUserId, userId)
                             }
                     }
                     else {
                         alert("You're already friends!")
                     }
 
-            }) // .then closing
-        } // if closing
-    }   // addFriend closing
+            })
+        }
+    }
 
     render() {
         return (

@@ -201,6 +201,13 @@ export default class ApplicationViews extends Component {
       })
   }
 
+  addFriend = (friendship) => FriendsManager.post(friendship)
+    .then(() => FriendsManager.getAll())
+    .then(allFriends => this.setState({
+      friends: allFriends
+    })
+    )
+
   addUser = (user) => SignUpManager.post(user)
 
   render() {
@@ -247,7 +254,8 @@ export default class ApplicationViews extends Component {
                   messages={this.state.messages}
                   addMessage={this.addMessage}
                   updateMessage={this.updateMessage}
-                  users={this.state.users} />
+                  users={this.state.users}
+                  addFriend={this.addFriend} />
             } else {
               return <Redirect to="/login" />
             }
