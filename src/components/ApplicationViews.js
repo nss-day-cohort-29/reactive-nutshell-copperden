@@ -70,6 +70,43 @@ export default class ApplicationViews extends Component {
   }
 
 
+  // UPDATING FOR THINGS SPECIFIC TO USER (resetting state after you login with a different user)
+  updateComponent = () => {
+
+    UsersManager.getAll().then(allUsers => {
+      this.setState({ users: allUsers });
+    })
+
+
+    NewsManager.getAllArticles()
+      .then(allArticles => {
+        this.setState({ articles: allArticles })
+      })
+    EventManager.getAll().then(allEvents => {
+      this.setState({ events: allEvents });
+    })
+
+
+
+    FriendsManager.getAll().then(allFriends => {
+      this.setState({ friends: allFriends });
+    })
+
+    ChatManager.getAll()
+      .then(allMessages => {
+        this.setState({ messages: allMessages })
+      })
+
+    // GETTING all tasks for user:
+    TaskManager.getAllTasks()
+      .then(allTasks => {
+        this.setState({
+          tasks: allTasks
+        })
+      })
+  }
+
+
 
   deleteTask = (id) => {
     return TaskManager.removeAndList(id)
@@ -178,7 +215,9 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
 
         <Route path="/login" render={(props) => {
-          return <Login {...props} users={this.state.users} />
+          return <Login {...props}
+          users={this.state.users}
+          updateComponent={this.updateComponent} />
         }} />
 
         <Route path="/register" render={(props) => {
@@ -229,7 +268,8 @@ export default class ApplicationViews extends Component {
               if (this.isAuthenticated()) {
                 return <TaskList {...props}
                       deleteTask={this.deleteTask}
-                      tasks={this.state.tasks} />
+                      tasks={this.state.tasks}
+                     />
               } else {
                 return <Redirect to="/login" />
               }
