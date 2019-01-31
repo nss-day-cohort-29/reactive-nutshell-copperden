@@ -43,6 +43,7 @@ export default class Login extends Component {
                 window.location.reload()
                 // this.props.history.push("/register")
             } else {
+                this.props.updateComponent()
                 this.props.history.push("/")
             }
     }

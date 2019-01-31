@@ -14,7 +14,10 @@ export default {
     },
     // getting all tasks:
     getAllTasks() {
-        return fetch(`${remoteURL}/tasks`).then(e => e.json())
+      let sessionUser = sessionStorage.getItem("userId")
+      let sessionUserNumber = Number(sessionUser)
+        return fetch(`${remoteURL}/tasks?userId=${sessionUserNumber}`)
+        .then(e => e.json())
       },
     //   delete tasks
       removeAndList(id){
