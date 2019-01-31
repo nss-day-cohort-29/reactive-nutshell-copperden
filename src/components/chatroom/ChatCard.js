@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import "./ChatRoom.css"
 import ChatManager from '../../modules/ChatManager';
+import FriendsManager from '../../modules/FriendsManager';
 
 export default class ChatCard extends Component {
 
@@ -104,23 +105,32 @@ export default class ChatCard extends Component {
         })
     }
 
+     // Create new friendship
+     createFriendship = (currentUserId, userId) => {
+
+        const newFriendship = {
+            currentUserId: currentUserId,
+            userId: userId
+        }
+
+        // POST the friendship
+        this.props.addFriend(newFriendship);
+    }
+
     // Event listener that asks if you want to friend a user when you click on their username.
     addFriend = () => {
         // if the user isn't the session user
         if (this.props.message.userId !== 1) {              // change to SESSION USER
             let currentUserId = 1;
             let userId = this.props.message.userId;
-            console.log(userId)
             // fetch all friends
-            return fetch(`http://localhost:5002/friends?userId=${userId}&currentUserId=${currentUserId}`)
-            .then(data => data.json())
+            FriendsManager.getFriendship(currentUserId, userId)
             .then(allConnections => {
                 // find this connection
                 let results = allConnections.find( connection => connection.currentUserId === 1 && connection.userId === userId );
-                console.log(results);
                     if (results === undefined) {
                         if (window.confirm(`Do you want to add ${this.props.message.user.name} as a friend?`)) {
-                                 console.log("HI FRIEND!");
+                                 this.createFriendship(currentUserId, userId)
                             }
                     }
                     else {
