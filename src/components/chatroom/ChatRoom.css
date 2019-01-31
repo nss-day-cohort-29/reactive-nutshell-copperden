@@ -41,6 +41,9 @@
     margin: 0px 10px;
 }
 
+.friend { color: blue; }
+.notFriend { color: red; }
+
 .current_user .username, .current_user .bottom_info {
     float: right;
 }
