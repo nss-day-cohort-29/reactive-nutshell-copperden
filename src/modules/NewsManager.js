@@ -2,7 +2,10 @@ const remoteURL = "http://localhost:5002"
 
 export default {
   getAllArticles() {
-    return fetch(`${remoteURL}/articles?_expand=user`).then(data => data.json())
+    let sessionUser = sessionStorage.getItem("userId")
+    let sessionUserNumber = Number(sessionUser)
+      return fetch(`${remoteURL}/articles?userId=${sessionUserNumber}`)
+      .then(e => e.json())
   },
 
   post(newArticle) {
