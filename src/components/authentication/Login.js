@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./Login.css"
 import { Link } from "react-router-dom"
+import acorn from'./loginAssests/acorn.png';
 
 
 export default class Login extends Component {
@@ -58,7 +59,8 @@ export default class Login extends Component {
 
         return (
             <section className="login">
-                <form onSubmit={this.handleLogin}>
+                <form className="registerContainer" onSubmit={this.handleLogin}>
+                <img src={acorn} className="acornIcon" alt="acornIcon" height="60" width="60"></img>
                     <h2>Please sign in</h2>
                     <label htmlFor="inputUsername">
                     </label> <br></br>
