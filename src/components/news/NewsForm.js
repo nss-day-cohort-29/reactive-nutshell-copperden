@@ -41,7 +41,7 @@ export default class NewsForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <form className="newsForm">
+        <form className="newsForm" onSubmit={this.makeNewsArticle}>
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input type="text" required
@@ -65,7 +65,7 @@ export default class NewsForm extends Component {
             id="synopsis"
             placeholder="Article summary" />
           </div>
-          <button type="submit" onClick={this.makeNewsArticle} className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </React.Fragment>
     )
