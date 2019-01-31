@@ -4,11 +4,11 @@ export class AddFriendForm extends Component {
   render() {
     return (
       <div>
-        <h2>Add Friends</h2>
+        <h2>Add Friend</h2>
         <input></input>
         <br/>
-        <button>Add Friend</button>
-        <button onClick={() => {
+        <button className="btn btn-primary">Add Friend</button>
+        <button className="btn btn-primary" onClick={() => {
         this.props.history.push("/friends")}
         }>Cancel</button>
       </div>

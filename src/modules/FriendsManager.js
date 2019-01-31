@@ -11,5 +11,4 @@ export default {
   return fetch(`${remoteURL}/friends?currentUserId=${sessionId}&_expand=user`)
   .then(e => e.json());
   }
-
 }
