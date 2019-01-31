@@ -32,7 +32,12 @@ export default class Login extends Component {
             user.name === currentUser)
 
 
-            console.log(authenticated)
+            console.log(authenticated.id)
+
+            sessionStorage.setItem(
+                "userId",
+                authenticated.id)
+
             if (authenticated === undefined){
                 alert("Whoops! We we couldn't find your account. Please re-renter a valid username and email or sign up below!")
                 window.location.reload()
