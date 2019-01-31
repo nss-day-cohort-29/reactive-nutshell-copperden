@@ -74,8 +74,36 @@ export default class ChatCard extends Component {
         }
     }
 
+    // friendConditionalStyle = (userId) => {
+    //     let friendstyle = "";
+    //     let sessionUser = sessionStorage.getItem("userId");
+    //     if (this.props.message.userId !== Number(sessionUser)) {
+    //         // then look through connections
+    //         // fetch all friends
+    //         let currentUserId = Number(sessionUser);
+    //         console.log("session:", currentUserId, " | friend:", userId)
+    //         FriendsManager.getFriendship(currentUserId, userId)
+    //         .then(allConnections => {
+    //             // find this connection
+    //             let results = allConnections.find( connection => connection.currentUserId === Number(sessionUser) && connection.userId === userId );
+    //                 // if this connection does not exist, i.e. is undefined:
+    //                 if (results === undefined) {
+    //                     let friendstyle = "notfriend";
+    //                     return friendstyle;
+    //                 }
+    //                 else {
+    //                     let friendstyle = "friend";
+    //                     return friendstyle;
+    //                 }
+
+    //         })
+    //         return friendstyle;
+    //     }
+
+    //     console.log("style:", friendstyle);
+    // }
+
     // Edit existing message upon submission.
-    // Resets 'message' in state to empty so that static message text displays.
     updateExistingMessage = evt => {
         evt.preventDefault();
 
@@ -88,6 +116,7 @@ export default class ChatCard extends Component {
 
         this.props.updateMessage(this.props.message.id, existingMessage)
         .then(() => {
+            // Resets 'message' in state to empty so that static message text displays.
             this.setState({ message: "" })
         })
     }
