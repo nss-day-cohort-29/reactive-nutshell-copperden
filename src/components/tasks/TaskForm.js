@@ -5,6 +5,8 @@ export default class TaskForm extends Component {
     state = {
         taskName: "",
         dueDate: "",
+        completed: "",
+        userId: ""
     }
 
     // Update state whenever an input field is edited
@@ -19,12 +21,13 @@ export default class TaskForm extends Component {
         invoking the function reference passed from parent component
      */
     constructNewTask = evt => {
+        let sessionUser = sessionStorage.getItem("userId");
         evt.preventDefault()
             const task = {
                 taskName: this.state.taskName,
                 dueDate: this.state.dueDate,
                 completed: this.state.complete,
-                userId: this.state.userId
+                userId: Number(sessionUser)
             }
 
             this.props.addTask(task).then(() => this.props.history.push("/tasks"))
