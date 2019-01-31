@@ -3,6 +3,7 @@ import "./Login.css"
 import { Link } from "react-router-dom"
 import SignUpManager from '../../modules/SignUpManager'
 import back from'./loginAssests/back.png';
+import acorn from'./loginAssests/acorn.png';
 
 
 export default class Login extends Component {
@@ -60,6 +61,7 @@ export default class Login extends Component {
             <section className="register">
                 <form onSubmit={this.handleRegister}>
                 <img src={back} onClick={() => this.props.history.push("/login")} className="backButton" alt="backButton" height="30" width="30"></img>
+                <img src={acorn} className="registerAcorn" alt="registerAcorn" height="60" width="60"></img>
                     <h2>Sign up</h2>
                     <label htmlFor="inputUsername">
                     </label><br></br>
