@@ -6,7 +6,6 @@ export class AddFriendForm extends Component {
       <div>
         <h2>Add Friends</h2>
         <input></input>
-        <button>Search</button>
         <br/>
         <button>Add Friend</button>
         <button onClick={() => {
