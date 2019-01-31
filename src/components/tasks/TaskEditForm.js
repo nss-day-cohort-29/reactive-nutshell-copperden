@@ -5,7 +5,8 @@ export default class TaskEditForm extends Component{
   state={
     taskName: "",
     dueDate: "",
-    completed: ""
+    completed: "",
+    userId: ""
   }
 
   handleFieldChange = evt => {
@@ -18,7 +19,8 @@ export default class TaskEditForm extends Component{
       this.setState({
         taskName:tasks.taskName,
         dueDate: tasks.dueDate,
-        completed: tasks.completed
+        completed: tasks.completed,
+        userId: tasks.userId
       })
     })
   }
@@ -29,7 +31,8 @@ export default class TaskEditForm extends Component{
       const existingTask = {
         taskName:this.state.taskName ,
         dueDate: this.state.dueDate,
-        completed:this.state.completed
+        completed:this.state.completed,
+        userId: this.state.userId
       }
       this.props.updateTask(this.props.match.params.taskId, existingTask)
       .then(() => this.props.history.push("/tasks"))
