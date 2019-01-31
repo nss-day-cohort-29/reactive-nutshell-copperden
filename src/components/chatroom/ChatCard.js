@@ -119,15 +119,18 @@ export default class ChatCard extends Component {
 
     // Event listener that asks if you want to friend a user when you click on their username.
     addFriend = () => {
+        let sessionUser = sessionStorage.getItem("userId");
+        // console.log(sessionUser);
         // if the user isn't the session user
-        if (this.props.message.userId !== 1) {              // change to SESSION USER
-            let currentUserId = 1;
+        if (this.props.message.userId !== Number(sessionUser)) {
+            let currentUserId = Number(sessionUser);
             let userId = this.props.message.userId;
             // fetch all friends
             FriendsManager.getFriendship(currentUserId, userId)
             .then(allConnections => {
                 // find this connection
-                let results = allConnections.find( connection => connection.currentUserId === 1 && connection.userId === userId );
+                let results = allConnections.find( connection => connection.currentUserId === Number(sessionUser) && connection.userId === userId );
+                    // if this connection does not exist, i.e. is undefined:
                     if (results === undefined) {
                         if (window.confirm(`Do you want to add ${this.props.message.user.name} as a friend?`)) {
                                  this.createFriendship(currentUserId, userId)
@@ -137,9 +140,9 @@ export default class ChatCard extends Component {
                         alert("You're already friends!")
                     }
 
-            }) // .then closing
-        } // if closing
-    }   // addFriend closing
+            })
+        }
+    }
 
     render() {
         return (
