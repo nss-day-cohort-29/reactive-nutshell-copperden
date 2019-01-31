@@ -18,6 +18,8 @@ export default class NewsForm extends Component {
   }
 
   makeNewsArticle = e => {
+    let sessionUser = sessionStorage.getItem("userId")
+    let sessionUserNumber = Number(sessionUser)
     e.preventDefault()
     if (this.state.title === "") {
       window.alert("Please enter a title for your news article.");
@@ -31,7 +33,7 @@ export default class NewsForm extends Component {
       url: this.state.url,
       synopsis: this.state.synopsis,
       timestamp: Date.now(),
-      userId: 1
+      userId: sessionUserNumber
     };
     // Creates the news article and redirects user to articles list
     this.props.addArticle(article).then(() => this.props.history.push("/"))
