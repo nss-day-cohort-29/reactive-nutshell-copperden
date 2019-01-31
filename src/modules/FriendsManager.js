@@ -7,6 +7,10 @@ export default {
   getAll() {
     return fetch(`${remoteURL}/friends`).then(e => e.json());
   },
+  getFriendsByCurrentUser(sessionId) {
+  return fetch(`${remoteURL}/friends?currentUserId=${sessionId}&_expand=user`)
+  .then(e => e.json());
+  },
   getFriendship(currentUserId, userId) {
     return fetch(`${remoteURL}/friends?userId=${userId}&currentUserId=${currentUserId}`)
     .then(e => e.json());
