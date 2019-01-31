@@ -1,54 +1,38 @@
 import React, { Component } from 'react'
-import FriendsManager from "./FriendsManager"
+import FriendsManager from "../../modules/FriendsManager"
 
 export class Friends extends Component {
+
+  state = {
+    currentUsersFriends: []
+  };
+
+  componentDidMount() {
+    let currentUser = sessionStorage.getItem("userId");
+    let currentUserId = Number(currentUser);
+
+    FriendsManager.getFriendsByCurrentUser(currentUserId)
+    .then(allFriends => {
+    this.setState({ currentUsersFriends: allFriends})
+      });
+    }
+
+  
   render() {
-// // Grab the username out of session storage
-//     let currentUser = sessionStorage.getItem("username");
-// // Map through all users and filter out all users who's username does not equal what is in session storage.
-//     let usersArray = this.props.users.map(user => {return user}).filter(user => user.name === currentUser);
-// // Get the id of the user found in the database
-//     let currentUserIdFound = usersArray.map(user => {return user.id});
-// // Convert the id into an interager
-//     let currentUserIdentifier = Number(currentUserIdFound);
-//     console.log("woop", currentUserIdentifier);
-// // Filter through the list of friends in the database to find which relationships match with the current user's id
-//    let theFriends = this.props.friends.filter(friend => friend.currentUserId === currentUserIdentifier)
 
-//     theFriends.map(friend => console.log("friends userID:", friend.userId))
-// // Grabbing the friends user id's 
-//     let friendsUserIds = theFriends.map(friend => {return friend.userId});
-
-//     let users = this.props.users;
-
-//     console.log("users:", users);
-
-
-
-
-let currentUserFriends = FriendsManager.currentUserFriends()
-
-
-
-
-
-    // let actualFriends = friendsUserIds.filter(friend => friend.userId === );
-
-    // actualFriends.map(friend => console.log("This guy", friend.name))
-
-    
 
     return (
       <div>
-          <button className="btn">Add Friends</button>
+          <button className="btn btn-primary" onClick={() => {
+          this.props.history.push("/friends/add-friend")}
+          }>Add Friends</button>
           <div className="current-friends-div">
             <h2>Your Friends</h2>
-            
-
-            
-          
+            {this.state.currentUsersFriends.map(friend => 
+              <div key={friend.user.id}>{friend.user.name}
+              <button className="btn" onClick={() => console.log("deleted")}>Delete</button>
+              </div>)}
           </div>
-        
       </div>
     )
   }

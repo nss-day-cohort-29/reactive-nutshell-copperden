@@ -19,6 +19,7 @@ import SignUpManager from "../modules/SignUpManager";
 import Friends from "./friends/Friends"
 import FriendsManager from "../modules/FriendsManager"
 import UsersManager from "../modules/UsersManager"
+import AddFriendForm from "./friends/AddFriendForm"
 
 export default class ApplicationViews extends Component {
 
@@ -54,6 +55,7 @@ export default class ApplicationViews extends Component {
     FriendsManager.getAll().then(allFriends => {
       this.setState({ friends: allFriends });
     })
+
 
     ChatManager.getAll()
       .then(allMessages => {
@@ -196,8 +198,13 @@ export default class ApplicationViews extends Component {
             articles={this.state.articles} />
         }} />
 
-        <Route path="/friends" render={props => {
-            return <Friends users={this.state.users} friends={this.state.friends} />
+        <Route exact path="/friends" render={props => {
+            return <Friends {...props} users={this.state.users} friends={this.state.friends} />
+          }}
+        />
+
+        <Route path="/friends/add-friend" render={props => {
+            return <AddFriendForm {...props} users={this.state.users} friends={this.state.friends} />
           }}
         />
 
