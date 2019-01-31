@@ -41,10 +41,11 @@ export default class ChatCard extends Component {
     // If 'message' in state is not empty, show edit field.
     // Otherwise, show the static message text.
     returnFormOrText = (message) => {
-        if (this.state.message !== "" && this.state.userId === 1) {
+        let sessionUser = sessionStorage.getItem("userId");
+        if (this.state.message !== "" && this.state.userId === Number(sessionUser)) {
             return (
                 <div className="message_text">
-                    <form className="chatEditForm" onSubmit={this.updateExistingMessage}>
+                    <form className="chatEditForm" onSubmit={this.updateExistingMessage} onMouseLeave={this.updateExistingMessage}>
                         <input type="text" required
                         className="form-control"
                         onChange={this.handleFieldChange}
@@ -60,24 +61,10 @@ export default class ChatCard extends Component {
         }
     }
 
-    // userConditionalEdit = (userId) => {
-    //     if (this.props.message.userId === 1) {
-    //         return (
-    //             <div className="bottom_info">
-    //                 {this.props.message.timeDisplay} | <a href="#" className="edit_link" onClick={this.editLink}>edit</a>
-    //             </div>
-    //         )
-    //     }
-    //     else {
-    //         return (
-    //             <div className="bottom_info">{this.props.message.timeDisplay}</div>
-    //         )
-    //     }
-    // }
-
     // Sets the "bubble" style for current user vs other users
     userConditionalStyle = (userId) => {
-        if (this.props.message.userId === 1) {
+        let sessionUser = sessionStorage.getItem("userId");
+        if (this.props.message.userId === Number(sessionUser)) {
             let style = "current_user";
             return style;
         }
