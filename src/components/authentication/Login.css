@@ -12,11 +12,11 @@
     }
 
     .login h2{
-        padding-top:100px;
+        padding-top:20px;
     }
 
     .register h2{
-        padding-top:45px;
+        padding-top:20px;
     }
 
     .signIn{
@@ -30,6 +30,14 @@
     .backButton{
         margin-top:20px;
         margin-right:300px;
+    }
+
+    .acornIcon{
+        margin-top:80px;
+    }
+
+    .registerAcorn{
+        margin-top:30px;
     }
 }
 
@@ -47,9 +55,13 @@
         margin-left: 20px;
     }
 
-    .login h2, .register h2 {
-        padding-top:70px;
+    .login h2 {
+        padding-top:30px;
         margin-left: 10px;
+    }
+
+    .register h2{
+        padding-top: 30px;
     }
 
     .signIn{
@@ -68,5 +80,16 @@
 
     .backButton{
         display: none;
+    }
+
+
+    .acornIcon{
+        margin-top:80px;
+        margin-left: 30px;
+    }
+
+    .registerAcorn{
+        margin-top:80px;
+        margin-left: 30px;
     }
 }
