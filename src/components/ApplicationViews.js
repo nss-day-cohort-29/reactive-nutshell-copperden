@@ -197,7 +197,7 @@ export default class ApplicationViews extends Component {
         }} />
 
         <Route path="/friends" render={props => {
-            return null
+            return <Friends users={this.state.users} friends={this.state.friends} />
           }}
         />
 
