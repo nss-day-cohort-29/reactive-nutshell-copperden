@@ -25,28 +25,26 @@ export default class TaskList extends Component {
                 {
                     // GETTING ALL TASKS CURRENTLY IN JSON
                 this.props.tasks.map(task =>
-          <div key={task.id}>
-                <div className="card-body">
-                    <h5 className="card-title">
-                        {task.taskName}<br></br>
-                        {task.dueDate}
-                    </h5>
+                <div key={task.id}>
+                        <div className="card-body">
+                            <h5 className="card-title">
+                                {task.taskName}<br></br>
+                                {task.dueDate}
+                            </h5>
 
-                    {/* ADDING DELETE TO THE TASK PAGE */}
-                    <div className="box">
-                            <label onClick={() => this.props.deleteTask(task.id)}
-                    className="card-link">
+                            {/* ADD LINK FOR EDITCHECK GITHUB */}
+                             <Link className="nav-link" to={`/tasks/${task.id}/edit`}>Edit</Link>
 
-                               {/* Complete <br></br> */}
-                               <a href="#"> <input type="checkbox" className="form-check-input"/></a>
-                            </label>
+                            {/* ADDING DELETE TO THE TASK PAGE */}
+                            <div>
+                                <button type="button"
+                                className="btn btn-primary"
+                                onClick={() => this.props.deleteTask(task.id)}>Delete</button>
+                            </div>
+
+                        </div>
+                        <hr></hr>
                     </div>
-                   {/* ADD LINK FOR EDITCHECK GITHUB */}
-                   <Link className="nav-link" to={`/tasks/${task.id}/edit`}>Edit</Link>
-
-                </div>
-                <hr></hr>
-            </div>
                 )}
             </section>
         )
