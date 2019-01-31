@@ -25,11 +25,10 @@
       "userId": 1
     },
     {
-      "id": 2,
-      "name": "Event Name 2",
-      "date": "2019-01-16T17:00",
+      "name": "TEST EDIT",
+      "date": "2020-02-12",
       "location": "Nashville, TN",
-      "userId": 2
+      "id": 2
     }
   ],
   "articles": [
@@ -56,38 +55,39 @@
       "timestamp": 1548870352423,
       "userId": 1,
       "id": 9
-    },
-    {
-      "title": "Weezer Drops Surprise ‘Teal Album’ of Covers",
-      "url": "http://loyolaphoenix.com/2019/01/weezer-drops-surprise-teal-album-of-covers/",
-      "synopsis": "The power of memes shouldn’t be underestimated. For the band Weezer, what started as a seemingly innocent tweet resulted in the release of a cover song. Now that song has turned into an entire album of covers.",
-      "timestamp": 1548870562192,
-      "userId": 1,
-      "id": 10
     }
   ],
   "tasks": [
-      {
-          "id": 1,
-          "taskName": "User1 Task Name 1",
-          "dueDate": "2019-02-22",
-          "completed": false,
-          "userId": 1
-      },
-      {
-          "id": 1,
-          "taskName": "User1 Task Name 2",
-          "dueDate": "2019-02-10",
-          "completed": false,
-          "userId": 1
-      },
-      {
-          "id": 1,
-          "taskName": "User2 Task Name 2",
-          "dueDate": "2019-02-15",
-          "completed": false,
-          "userId": 2
-      }
+    {
+      "taskName": "Water the plants",
+      "dueDate": "2019-02-12",
+      "id": 2,
+      "userId": 1
+    },
+    {
+      "taskName": "Eat waffles",
+      "dueDate": "2019-01-31",
+      "id": 3,
+      "userId": 1
+    },
+    {
+      "taskName": "Clean room",
+      "dueDate": "2019-01-31",
+      "id": 4,
+      "userId": 1
+    },
+    {
+      "taskName": "Finish This THANG!",
+      "dueDate": "2019-01-31",
+      "id": 5,
+      "userId": 2
+    },
+    {
+      "taskName": "Get an oil change",
+      "dueDate": "2019-02-27",
+      "id": 6,
+      "userId": 2
+    }
   ],
   "messages": [
     {
@@ -101,9 +101,30 @@
       "message": "User2 Message Content",
       "time": "Message Time",
       "userId": 2
+    },
+    {
+      "message": "This is a sweet test message",
+      "timeDisplay": "1/28/2019 at 3:30 PM",
+      "timestamp": 1548711015561,
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "message": "hi!",
+      "timeDisplay": "1/29/2019 at 9:06 AM",
+      "timestamp": 1548774384269,
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "message": "hey guys!",
+      "timeDisplay": "1/31/2019 at 7:33 AM",
+      "timestamp": 1548941624462,
+      "userId": 1,
+      "id": 5
     }
   ],
-  "connections": [
+  "friends": [
     {
       "id": 1,
       "currentUserId": 1,

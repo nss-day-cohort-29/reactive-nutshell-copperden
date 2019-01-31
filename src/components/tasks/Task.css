@@ -25,6 +25,7 @@
     .form-check-input{
         width:20px;
         height: 20px;
+        z-index: -1;
     }
 }
 
@@ -49,13 +50,10 @@
         padding-bottom:25px;
     }
 
-    .card-body{
-
-    }
-
     .form-check-input{
         width:20px;
         height: 20px;
+        z-index: -1;
     }
 }
 
