@@ -20,11 +20,13 @@ export default {
   },
    //   delete articles
    removeAndList(id){
+    let sessionUser = sessionStorage.getItem("userId");
+    let sessionUserNumber = Number(sessionUser);
     return fetch(`http://localhost:5002/articles/${id}`, {
         method: "DELETE"
     })
     .then(e => e.json())
-    .then(() => fetch(`http://localhost:5002/articles`))
+    .then(() => fetch(`http://localhost:5002/articles?userId=${sessionUserNumber}`))
     .then(e => e.json())
 }
 }
